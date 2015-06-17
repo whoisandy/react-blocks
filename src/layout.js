@@ -150,5 +150,7 @@ export default {
   alignStretch: alignStretch,
   justifyStart: justifyStart,
   justifyCenter: justifyCenter,
-  justifyEnd: justifyEnd
+  justifyEnd: justifyEnd,
+  justifyBetween: justifyBetween,
+  justifyAround: justifyAround
 };

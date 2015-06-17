@@ -12,7 +12,7 @@ class Block extends React.Component {
     let props = this.props;
     let styles = Layout.flexRoot;
 
-    if (typeof(props.flex) === 'string') {
+    if (props.flex && typeof(props.flex) === 'string') {
       styles = Layout.extend(styles, Layout.flexFixed, { flexBasis: props.flex });
     } else {
       styles = Layout.extend(styles, Layout.flexFluid);
@@ -82,7 +82,7 @@ class Block extends React.Component {
 
     switch(props.position){
       case 'absolute':
-        styles = Layout.extend(styles, Layout.absoute);
+        styles = Layout.extend(styles, Layout.absolute);
         break;
       default:
         styles = Layout.extend(styles, Layout.relative);
@@ -90,7 +90,7 @@ class Block extends React.Component {
     }
 
     if(props.block){
-      styles = Layout.extend(Layout.block);
+      styles = Layout.extend(styles, Layout.block);
     }
     if(props.scroll){
       styles = Layout.extend(styles, Layout.scroll);
