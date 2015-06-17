@@ -6,6 +6,7 @@ import gutil from 'gulp-util';
 import shell from 'gulp-shell';
 import rename from 'gulp-rename';
 import {exec} from 'child_process';
+import {server as karma} from 'karma'
 
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
@@ -15,6 +16,13 @@ gulp.task('copy', () => {
   gulp.src('src/dev.html')
     .pipe(rename('index.html'))
     .pipe(gulp.dest('dev'));
+});
+
+gulp.task('test', (cb) => {
+  karma.start({
+    configFile: path.resolve(__dirname, 'karma.conf.js'),
+    singleRun: true
+  }, cb);
 });
 
 gulp.task('webpack:dev', ['copy'], (cb) => {
