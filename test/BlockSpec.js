@@ -168,3 +168,88 @@ describe('Block Spec: Block Element', () => {
     expect(elem.props.style.overflow).to.eql('auto');
   });
 });
+
+describe('Block Spec: Layout Test', () => {
+  let block;
+  beforeEach(() => {
+    block = TestUtils.renderIntoDocument(
+      <Block className="app">
+        <Block className="sidebar" flex="200px" />
+        <Block className="main" vertical>
+          <Block className="header" flex="40px" />
+          <Block className="content" />
+        </Block>
+      </Block>
+    );
+  });
+
+  it('should have an app block with default flex styles', () => {
+    let appElem = TestUtils.findRenderedDOMComponentWithClass(block, 'app');
+    expect(appElem.props.style).to.deep.eql({
+      display: 'flex',
+      position: 'relative',
+      flexGrow: 1,
+      flexBasis: 'auto',
+      flexDirection: 'row',
+      alignItems: 'stretch',
+      justifyContent: 'flex-start',
+      boxSizing: 'border-box'
+    });
+  });
+
+  it('should have a sidebar block with flexBasis 200px', () => {
+    let sidebarElem = TestUtils.findRenderedDOMComponentWithClass(block, 'sidebar');
+    expect(sidebarElem.props.style).to.deep.eql({
+      display: 'flex',
+      position: 'relative',
+      flexGrow: 0,
+      flexBasis: '200px',
+      flexDirection: 'row',
+      alignItems: 'stretch',
+      justifyContent: 'flex-start',
+      boxSizing: 'border-box'
+    });
+  });
+
+  it('should have a main block with flexBasis auto', () => {
+    let mainElem = TestUtils.findRenderedDOMComponentWithClass(block, 'main');
+    expect(mainElem.props.style).to.deep.eql({
+      display: 'flex',
+      position: 'relative',
+      flexGrow: 1,
+      flexBasis: 'auto',
+      flexDirection: 'column',
+      alignItems: 'stretch',
+      justifyContent: 'flex-start',
+      boxSizing: 'border-box'
+    });
+  });
+
+  it('should have a header block with flexBasis 40px', () => {
+    let mainElem = TestUtils.findRenderedDOMComponentWithClass(block, 'header');
+    expect(mainElem.props.style).to.deep.eql({
+      display: 'flex',
+      position: 'relative',
+      flexGrow: 0,
+      flexBasis: '40px',
+      flexDirection: 'row',
+      alignItems: 'stretch',
+      justifyContent: 'flex-start',
+      boxSizing: 'border-box'
+    });
+  });
+
+  it('should have a content block with flexBasis auto', () => {
+    let mainElem = TestUtils.findRenderedDOMComponentWithClass(block, 'content');
+    expect(mainElem.props.style).to.deep.eql({
+      display: 'flex',
+      position: 'relative',
+      flexGrow: 1,
+      flexBasis: 'auto',
+      flexDirection: 'row',
+      alignItems: 'stretch',
+      justifyContent: 'flex-start',
+      boxSizing: 'border-box'
+    });
+  });
+});
