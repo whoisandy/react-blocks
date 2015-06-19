@@ -1,7 +1,7 @@
 {
   "name": "react-blocks",
   "version": "1.0.0",
-  "description": "Yet another layout component to manage complex layouts using flexbox.",
+  "description": "A higher-level component to manage complex layouts using flexbox.",
   "main": "./lib/main.js",
   "scripts": {
     "start": "gulp",
