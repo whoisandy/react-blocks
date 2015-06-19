@@ -38,6 +38,9 @@ class Block extends React.Component {
       case 'end':
         styles = Layout.extend(styles, Layout.alignEnd);
         break;
+      case 'stretch':
+        styles = Layout.extend(styles, Layout.alignStretch);
+        break;
       default:
         break;
     }
@@ -52,11 +55,17 @@ class Block extends React.Component {
       case 'end':
         styles = Layout.extend(styles, Layout.selfAlignEnd);
         break;
+      case 'stretch':
+        styles = Layout.extend(styles, Layout.selfAlignStretch);
+        break;
       default:
         break;
     }
 
     switch(props.justify){
+      case 'start':
+        styles = Layout.extend(styles, Layout.justifyStart);
+        break;
       case 'center':
         styles = Layout.extend(styles, Layout.justifyCenter);
         break;

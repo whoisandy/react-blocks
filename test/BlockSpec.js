@@ -83,13 +83,7 @@ describe('Block Spec: Direction', () => {
 });
 
 describe('Block Spec: Align Items', () => {
-  it('should have alignItems to stretch by default', () => {
-    let block = TestUtils.renderIntoDocument(<Block />);
-    let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
-    expect(elem.props.style.alignItems).to.eql('stretch');
-  });
-
-  it('should have alignItems to start', () => {
+  it('should have alignItems to flex-start', () => {
     let block = TestUtils.renderIntoDocument(<Block align="start" />);
     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
     expect(elem.props.style.alignItems).to.eql('flex-start');
@@ -106,11 +100,17 @@ describe('Block Spec: Align Items', () => {
     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
     expect(elem.props.style.alignItems).to.eql('flex-end');
   });
+
+  it('should have alignItems to stretch', () => {
+    let block = TestUtils.renderIntoDocument(<Block align="stretch" />);
+    let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
+    expect(elem.props.style.alignItems).to.eql('stretch');
+  });
 });
 
 describe('Block Spec: Justify Content', () => {
-  it('should have justifyContent to flex-start by default', () => {
-    let block = TestUtils.renderIntoDocument(<Block />);
+  it('should have justifyContent to flex-start', () => {
+    let block = TestUtils.renderIntoDocument(<Block justify="start" />);
     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
     expect(elem.props.style.justifyContent).to.eql('flex-start');
   });
@@ -141,12 +141,6 @@ describe('Block Spec: Justify Content', () => {
 });
 
 describe('Block Spec: Align Self', () => {
-  it('should have alignSelf to stretch by default', () => {
-    let block = TestUtils.renderIntoDocument(<Block />);
-    let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
-    expect(elem.props.style.alignSelf).to.eql('stretch');
-  });
-
   it('should have alignSelf to flex-start', () => {
     let block = TestUtils.renderIntoDocument(<Block self="start" />);
     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
@@ -163,6 +157,12 @@ describe('Block Spec: Align Self', () => {
     let block = TestUtils.renderIntoDocument(<Block self="end" />);
     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
     expect(elem.props.style.alignSelf).to.eql('flex-end');
+  });
+
+  it('should have alignSelf to stretch', () => {
+    let block = TestUtils.renderIntoDocument(<Block self="stretch" />);
+    let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
+    expect(elem.props.style.alignSelf).to.eql('stretch');
   });
 });
 
