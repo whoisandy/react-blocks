@@ -4,32 +4,28 @@ import React from 'react';
 import Layout from './layout';
 
 class Block extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    let props = this.props;
-    let styles = Layout.flexRoot;
+    let props = this.props, styles = {};
 
-    if (props.flex && typeof(props.flex) === 'string') {
-      styles = Layout.extend(styles, Layout.flexFixed, { flexBasis: props.flex });
-    } else {
-      styles = Layout.extend(styles, Layout.flexFluid);
+    if(props.layout){
+      styles = Layout.extend(styles, Layout.layout, Layout.vertical);
     }
 
     if(props.vertical){
+      styles = Layout.extend(styles, Layout.vertical);
       if(props.reverse){
         styles = Layout.extend(styles, Layout.verticalReverse);
-      } else {
-        styles = Layout.extend(styles, Layout.vertical);
       }
-    } else {
+    }
+    if(props.horizontal) {
+      styles = Layout.extend(styles, Layout.horizontal);
       if(props.reverse){
         styles = Layout.extend(styles, Layout.horizontalReverse);
-      } else {
-        styles = Layout.extend(styles, Layout.horizontal);
       }
+    }
+
+    if(props.flex){
+      styles = Layout.extend(styles, Layout.flex);
     }
 
     switch(props.align){
@@ -43,11 +39,10 @@ class Block extends React.Component {
         styles = Layout.extend(styles, Layout.alignEnd);
         break;
       default:
-        styles = Layout.extend(styles, Layout.alignStretch);
         break;
     }
 
-    switch(props.selfAlign){
+    switch(props.self){
       case 'start':
         styles = Layout.extend(styles, Layout.selfAlignStart);
         break;
@@ -58,7 +53,6 @@ class Block extends React.Component {
         styles = Layout.extend(styles, Layout.selfAlignEnd);
         break;
       default:
-        styles = Layout.extend(styles, Layout.selfAlignStretch);
         break;
     }
 
@@ -76,28 +70,35 @@ class Block extends React.Component {
         styles = Layout.extend(styles, Layout.justifyAround);
         break;
       default:
-        styles = Layout.extend(styles, Layout.justifyStart);
         break;
     }
 
-    switch(props.position){
-      case 'absolute':
-        styles = Layout.extend(styles, Layout.absolute);
-        break;
-      default:
-        styles = Layout.extend(styles, Layout.relative);
-        break;
+    if(props.wrap){
+      styles = Layout.extend(styles, Layout.wrap);
+      if(props.reverse){
+        styles = Layout.extend(styles, Layout.wrapReverse);
+      }
+    }
+
+    if(props.relative){
+      styles = Layout.extend(styles, Layout.relative);
+    }
+    if(props.absolute){
+      styles = Layout.extend(styles, Layout.absolute);
     }
 
     if(props.block){
       styles = Layout.extend(styles, Layout.block);
     }
-    if(props.scroll){
-      styles = Layout.extend(styles, Layout.scroll);
+    if(props.hidden){
+      styles = Layout.extend(styles, Layout.hidden);
+    }
+    if(props.invisible){
+      styles = Layout.extend(styles, Layout.invisible);
     }
 
     return (
-      <div {...props} style={styles}>
+      <div style={styles} {...props}>
         {props.children}
       </div>
     );
@@ -105,16 +106,19 @@ class Block extends React.Component {
 };
 
 Block.PropTypes = {
-  flex: React.PropTypes.string,
+  layout: React.PropTypes.bool,
+  flex: React.PropTypes.bool,
   vertical: React.PropTypes.bool,
   horizontal: React.PropTypes.bool,
   reverse: React.PropTypes.bool,
   align: React.PropTypes.oneOf(['start', 'center', 'end', 'stretch']),
-  selfAlign: React.PropTypes.oneOf(['start', 'center', 'end', 'stretch']),
+  self: React.PropTypes.oneOf(['start', 'center', 'end', 'stretch']),
   justify: React.PropTypes.oneOf(['start', 'center', 'end', 'between', 'around']),
-  position: React.PropTypes.oneOf(['absolute', 'relative']),
+  relative: React.PropTypes.bool,
+  absolute: React.PropTypes.bool,
   block: React.PropTypes.bool,
-  scroll: React.PropTypes.bool
+  hidden: React.PropTypes.bool,
+  invisible: React.PropTypes.bool
 };
 
 export default Block;

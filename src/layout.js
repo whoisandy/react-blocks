@@ -11,23 +11,27 @@ const extend = (...args) => {
   return newObj;
 };
 
-let flexRoot, flexFluid, flexFixed;
-let flexStretch, flexFit;
+let layout, flex;
 let horizontal, horizontalReverse, vertical, verticalReverse;
 let alignStart, alignCenter, alignEnd, alignStretch;
-let justifyStart, justifyCenter, justifyEnd, justifyBetween, justifyAround;
 let selfAlignStart, selfAlignCenter, selfAlignEnd, selfAlignStretch;
-let block, hidden, invisible, scroll;
+let justifyStart, justifyCenter, justifyEnd, justifyBetween, justifyAround;
+let block, hidden, invisible;
 let relative, absolute;
+let wrap, wrapReverse;
 
-flexRoot = {
-  display: 'flex',
-  boxSizing: 'border-box'
+layout = {
+  display: 'flex'
+};
+
+flex = {
+  flexGrow: 1,
+  flexShrink: 1,
+  flexBasis: 'auto'
 };
 
 block = {
-  display: 'block',
-  boxSizing: 'border-box'
+  display: 'block'
 };
 
 hidden = {
@@ -36,10 +40,6 @@ hidden = {
 
 invisible = {
   visibility: 'hidden'
-};
-
-scroll = {
-  overflow: 'auto'
 };
 
 relative = {
@@ -54,28 +54,19 @@ absolute = {
   left: 0
 };
 
-flexFluid = {
-  flexGrow: 1,
-  flexBasis: 'auto'
-};
-
-flexFixed = {
-  flexGrow: 0
-}
-
-horizontal = extend(flexRoot, {
+horizontal = extend(layout, {
   flexDirection: 'row'
 });
 
-horizontalReverse = extend(flexRoot, {
+horizontalReverse = extend(layout, {
   flexDirection: 'row-reverse'
 });
 
-vertical = extend(flexRoot, {
+vertical = extend(layout, {
   flexDirection: 'column'
 });
 
-verticalReverse = extend(flexRoot, {
+verticalReverse = extend(layout, {
   flexDirection: 'column-reverse'
 });
 
@@ -131,15 +122,23 @@ justifyAround = {
   justifyContent: 'space-around'
 };
 
+wrap = {
+  flexWrap: 'wrap'
+};
+
+wrapReverse = {
+  flexWrap: 'wrap-reverse'
+};
+
 export default {
   extend: extend,
-  flexFluid: flexFluid,
-  flexFixed: flexFixed,
   block: block,
   hidden: hidden,
-  scroll: scroll,
+  invisible: invisible,
   relative: relative,
   absolute: absolute,
+  layout: layout,
+  flex: flex,
   horizontal: horizontal,
   horizontalReverse: horizontalReverse,
   vertical: vertical,
@@ -148,9 +147,15 @@ export default {
   alignCenter: alignCenter,
   alignEnd: alignEnd,
   alignStretch: alignStretch,
+  selfAlignStart: selfAlignStart,
+  selfAlignCenter: selfAlignCenter,
+  selfAlignEnd: selfAlignEnd,
+  selfAlignStretch: selfAlignStretch,
   justifyStart: justifyStart,
   justifyCenter: justifyCenter,
   justifyEnd: justifyEnd,
   justifyBetween: justifyBetween,
-  justifyAround: justifyAround
+  justifyAround: justifyAround,
+  wrap: wrap,
+  wrapReverse: wrapReverse
 };

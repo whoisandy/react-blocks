@@ -1,57 +1,27 @@
-html, body{
-    margin: 0;
-    padding: 0;
-    height: 100%;
+*,
+*:before,
+*:after{
+  box-sizing: border-box;
 }
 
-p{
-    margin: 0 0 10px 0;
+body{
+    margin: 0;
+    padding: 0;
 }
 
 #container{
-    height: 100%;
-    display: flex;
-    overflow: hidden;
+    margin: 0;
+    padding: 0;
 }
 
-.logo, .links{
-  height: 40px;
-  margin: 0;
-  padding: 12px;
+.app{
+  margin: 12px;
+  padding: 4px;
+  background: #999999;
 }
 
-.logo{
-  background: white;
-}
-
-.links{
-  background: lightgrey;
-}
-
-.sidebar{
-  padding: 8px;
-  background: grey;
-}
-
-.categories, .preferences{
+.app > div{
   margin: 4px;
   padding: 12px;
-  background: white;
-}
-
-.main{
-  padding: 12px;
-  background: grey;
-}
-
-.main > div{
-  margin: 4px;
-  padding: 12px;
-  background: white;
-}
-
-.main-content > div{
-  margin: 4px;
-  padding: 12px;
-  background: lightgrey;
+  background: #ffffff;
 }

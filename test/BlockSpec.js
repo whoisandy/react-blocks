@@ -28,55 +28,57 @@ describe('Block Spec: Basic', () => {
     expect(content).to.eql('Paragraph here');
   });
 
-  it('should be have default flex styles', () => {
-    let block = TestUtils.renderIntoDocument(<Block />);
+  it('should have display flex', () => {
+    let block = TestUtils.renderIntoDocument(<Block layout />);
     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
-    expect(elem.props.style).to.deep.eql({
-      display: 'flex',
-      position: 'relative',
-      flexGrow: 1,
-      flexBasis: 'auto',
-      flexDirection: 'row',
-      alignItems: 'stretch',
-      justifyContent: 'flex-start',
-      boxSizing: 'border-box'
-    });
-  });
-});
-
-describe('Block Spec: Flex Direction', () => {
-  it('should have flexDirection row-reverse', () => {
-    let block = TestUtils.renderIntoDocument(<Block reverse />);
-    let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
-    expect(elem.props.style.flexDirection).to.eql('row-reverse');
+    expect(elem.props.style.display).to.eql('flex');
   });
 
-  it('should have flexDirection column', () => {
-    let block = TestUtils.renderIntoDocument(<Block vertical />);
-    let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
-    expect(elem.props.style.flexDirection).to.eql('column');
-  });
-
-  it('should have flexDirection column-reverse', () => {
-    let block = TestUtils.renderIntoDocument(<Block vertical reverse/>);
-    let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
-    expect(elem.props.style.flexDirection).to.eql('column-reverse');
-  });
-});
-
-describe('Block Spec: Flex Basis', () => {
-  it('should have flexBasis auto and flexGrow 1', () => {
-    let block = TestUtils.renderIntoDocument(<Block />);
+  it('should have default flex', () => {
+    let block = TestUtils.renderIntoDocument(<Block flex/>);
     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
     expect(elem.props.style.flexGrow).to.eql(1);
+    expect(elem.props.style.flexShrink).to.eql(1);
     expect(elem.props.style.flexBasis).to.eql('auto');
   });
 
-  it('should have flexBasis 200px and flexGrow 0', () => {
-    let block = TestUtils.renderIntoDocument(<Block flex="200px" />);
+  it('should have display flex and  default flex', () => {
+    let block = TestUtils.renderIntoDocument(<Block layout flex/>);
     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
-    expect(elem.props.style.flexGrow).to.eql(0);
-    expect(elem.props.style.flexBasis).to.eql('200px');
+    expect(elem.props.style.display).to.eql('flex');
+    expect(elem.props.style.flexGrow).to.eql(1);
+    expect(elem.props.style.flexShrink).to.eql(1);
+    expect(elem.props.style.flexBasis).to.eql('auto');
+  });
+});
+
+describe('Block Spec: Direction', () => {
+  it('should have display flex and flexDirection row', () => {
+    let block = TestUtils.renderIntoDocument(<Block layout horizontal/>);
+    let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
+    expect(elem.props.style.display).to.eql('flex');
+    expect(elem.props.style.flexDirection).to.eql('row');
+  });
+
+  it('should have display flex and flexDirection row-reverse', () => {
+    let block = TestUtils.renderIntoDocument(<Block layout horizontal reverse/>);
+    let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
+    expect(elem.props.style.display).to.eql('flex');
+    expect(elem.props.style.flexDirection).to.eql('row-reverse');
+  });
+
+  it('should have display flex and flexDirection column', () => {
+    let block = TestUtils.renderIntoDocument(<Block layout vertical/>);
+    let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
+    expect(elem.props.style.display).to.eql('flex');
+    expect(elem.props.style.flexDirection).to.eql('column');
+  });
+
+  it('should have display flex and flexDirection column-reverse', () => {
+    let block = TestUtils.renderIntoDocument(<Block layout vertical reverse/>);
+    let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
+    expect(elem.props.style.display).to.eql('flex');
+    expect(elem.props.style.flexDirection).to.eql('column-reverse');
   });
 });
 
@@ -138,118 +140,156 @@ describe('Block Spec: Justify Content', () => {
   });
 });
 
-describe('Block Spec: Block Element', () => {
+describe('Block Spec: Align Self', () => {
+  it('should have alignSelf to stretch by default', () => {
+    let block = TestUtils.renderIntoDocument(<Block />);
+    let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
+    expect(elem.props.style.alignSelf).to.eql('stretch');
+  });
+
+  it('should have alignSelf to flex-start', () => {
+    let block = TestUtils.renderIntoDocument(<Block self="start" />);
+    let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
+    expect(elem.props.style.alignSelf).to.eql('flex-start');
+  });
+
+  it('should have alignSelf to center', () => {
+    let block = TestUtils.renderIntoDocument(<Block self="center" />);
+    let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
+    expect(elem.props.style.alignSelf).to.eql('center');
+  });
+
+  it('should have alignSelf to flex-end', () => {
+    let block = TestUtils.renderIntoDocument(<Block self="end" />);
+    let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
+    expect(elem.props.style.alignSelf).to.eql('flex-end');
+  });
+});
+
+describe('Block Spec: Wrap', () => {
+  it('should have flexWrap wrap', () => {
+    let block = TestUtils.renderIntoDocument(<Block wrap/>);
+    let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
+    expect(elem.props.style.flexWrap).to.eql('wrap');
+  });
+
+  it('should have flexWrap wrap-reverse', () => {
+    let block = TestUtils.renderIntoDocument(<Block wrap reverse/>);
+    let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
+    expect(elem.props.style.flexWrap).to.eql('wrap-reverse');
+  });
+})
+
+describe('Block Spec: General', () => {
   it('should be a block element', () => {
     let block = TestUtils.renderIntoDocument(<Block block />);
+    let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
+    expect(elem.props.style.display).to.eql('block');
+  });
+
+  it('should be block element with relative position', () => {
+    let block = TestUtils.renderIntoDocument(<Block block relative />);
     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
     expect(elem.props.style.display).to.eql('block');
     expect(elem.props.style.position).to.eql('relative');
   });
 
-  it('should be a block with overflow auto', () => {
-    let block = TestUtils.renderIntoDocument(<Block block scroll />);
-    let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
-    expect(elem.props.style.display).to.eql('block');
-    expect(elem.props.style.overflow).to.eql('auto');
-  });
-
-  it('should be an absolute block element', () => {
-    let block = TestUtils.renderIntoDocument(<Block block position="absolute" />);
+  it('should be a block element with absolute position', () => {
+    let block = TestUtils.renderIntoDocument(<Block block absolute />);
     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
     expect(elem.props.style.display).to.eql('block');
     expect(elem.props.style.position).to.eql('absolute');
   });
 
-  it('should be an absolute block with overflow auto', () => {
-    let block = TestUtils.renderIntoDocument(<Block block scroll position="absolute" />);
+  it('should be invisible', () => {
+    let block = TestUtils.renderIntoDocument(<Block invisible />);
     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
-    expect(elem.props.style.display).to.eql('block');
-    expect(elem.props.style.position).to.eql('absolute');
-    expect(elem.props.style.overflow).to.eql('auto');
+    expect(elem.props.style.visibility).to.eql('hidden');
+  });
+
+  it('should be hidden', () => {
+    let block = TestUtils.renderIntoDocument(<Block hidden />);
+    let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
+    expect(elem.props.style.display).to.eql('none');
   });
 });
 
-describe('Block Spec: Layout Test', () => {
-  let block;
-  beforeEach(() => {
-    block = TestUtils.renderIntoDocument(
-      <Block className="app">
-        <Block className="sidebar" flex="200px" />
-        <Block className="main" vertical>
-          <Block className="header" flex="40px" />
-          <Block className="content" />
-        </Block>
-      </Block>
-    );
-  });
+// describe('Block Spec: Layout Test', () => {
+//   let block;
+//   beforeEach(() => {
+//     block = TestUtils.renderIntoDocument(
+//       <Block className="app">
+//         <Block className="sidebar" flex="200px" />
+//         <Block className="main" vertical>
+//           <Block className="header" flex="40px" />
+//           <Block className="content" />
+//         </Block>
+//       </Block>
+//     );
+//   });
 
-  it('should have an app block with default flex styles', () => {
-    let appElem = TestUtils.findRenderedDOMComponentWithClass(block, 'app');
-    expect(appElem.props.style).to.deep.eql({
-      display: 'flex',
-      position: 'relative',
-      flexGrow: 1,
-      flexBasis: 'auto',
-      flexDirection: 'row',
-      alignItems: 'stretch',
-      justifyContent: 'flex-start',
-      boxSizing: 'border-box'
-    });
-  });
+//   it('should have an app block with default flex styles', () => {
+//     let appElem = TestUtils.findRenderedDOMComponentWithClass(block, 'app');
+//     expect(appElem.props.style).to.deep.eql({
+//       display: 'flex',
+//       flexGrow: 1,
+//       flexBasis: 'auto',
+//       flexDirection: 'row',
+//       alignItems: 'stretch',
+//       justifyContent: 'flex-start',
+//       boxSizing: 'border-box'
+//     });
+//   });
 
-  it('should have a sidebar block with flexBasis 200px', () => {
-    let sidebarElem = TestUtils.findRenderedDOMComponentWithClass(block, 'sidebar');
-    expect(sidebarElem.props.style).to.deep.eql({
-      display: 'flex',
-      position: 'relative',
-      flexGrow: 0,
-      flexBasis: '200px',
-      flexDirection: 'row',
-      alignItems: 'stretch',
-      justifyContent: 'flex-start',
-      boxSizing: 'border-box'
-    });
-  });
+//   it('should have a sidebar block with flexBasis 200px', () => {
+//     let sidebarElem = TestUtils.findRenderedDOMComponentWithClass(block, 'sidebar');
+//     expect(sidebarElem.props.style).to.deep.eql({
+//       display: 'flex',
+//       flexGrow: 0,
+//       flexBasis: '200px',
+//       flexDirection: 'row',
+//       alignItems: 'stretch',
+//       justifyContent: 'flex-start',
+//       boxSizing: 'border-box'
+//     });
+//   });
 
-  it('should have a main block with flexBasis auto', () => {
-    let mainElem = TestUtils.findRenderedDOMComponentWithClass(block, 'main');
-    expect(mainElem.props.style).to.deep.eql({
-      display: 'flex',
-      position: 'relative',
-      flexGrow: 1,
-      flexBasis: 'auto',
-      flexDirection: 'column',
-      alignItems: 'stretch',
-      justifyContent: 'flex-start',
-      boxSizing: 'border-box'
-    });
-  });
+//   it('should have a main block with flexBasis auto', () => {
+//     let mainElem = TestUtils.findRenderedDOMComponentWithClass(block, 'main');
+//     expect(mainElem.props.style).to.deep.eql({
+//       display: 'flex',
+//       flexGrow: 1,
+//       flexBasis: 'auto',
+//       flexDirection: 'column',
+//       alignItems: 'stretch',
+//       justifyContent: 'flex-start',
+//       boxSizing: 'border-box'
+//     });
+//   });
 
-  it('should have a header block with flexBasis 40px', () => {
-    let mainElem = TestUtils.findRenderedDOMComponentWithClass(block, 'header');
-    expect(mainElem.props.style).to.deep.eql({
-      display: 'flex',
-      position: 'relative',
-      flexGrow: 0,
-      flexBasis: '40px',
-      flexDirection: 'row',
-      alignItems: 'stretch',
-      justifyContent: 'flex-start',
-      boxSizing: 'border-box'
-    });
-  });
+//   it('should have a header block with flexBasis 40px', () => {
+//     let mainElem = TestUtils.findRenderedDOMComponentWithClass(block, 'header');
+//     expect(mainElem.props.style).to.deep.eql({
+//       display: 'flex',
+//       flexGrow: 0,
+//       flexBasis: '40px',
+//       flexDirection: 'row',
+//       alignItems: 'stretch',
+//       justifyContent: 'flex-start',
+//       boxSizing: 'border-box'
+//     });
+//   });
 
-  it('should have a content block with flexBasis auto', () => {
-    let mainElem = TestUtils.findRenderedDOMComponentWithClass(block, 'content');
-    expect(mainElem.props.style).to.deep.eql({
-      display: 'flex',
-      position: 'relative',
-      flexGrow: 1,
-      flexBasis: 'auto',
-      flexDirection: 'row',
-      alignItems: 'stretch',
-      justifyContent: 'flex-start',
-      boxSizing: 'border-box'
-    });
-  });
-});
+//   it('should have a content block with flexBasis auto', () => {
+//     let mainElem = TestUtils.findRenderedDOMComponentWithClass(block, 'content');
+//     expect(mainElem.props.style).to.deep.eql({
+//       display: 'flex',
+//       flexGrow: 1,
+//       flexBasis: 'auto',
+//       flexDirection: 'row',
+//       alignItems: 'stretch',
+//       justifyContent: 'flex-start',
+//       boxSizing: 'border-box'
+//     });
+//   });
+// });
