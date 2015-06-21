@@ -11,13 +11,16 @@ import {server as karma} from 'karma';
 import webpack from 'webpack';
 import webpackDevServer from 'webpack-dev-server';
 import webpackDevConfig from './webpack/webpack.dev.config';
+import webpackConfig from './webpack/webpack.config';
 
+// Copy task
 gulp.task('copy', () => {
   gulp.src('src/dev.html')
     .pipe(rename('index.html'))
     .pipe(gulp.dest('dev'));
 });
 
+// Test task
 gulp.task('test', (cb) => {
   karma.start({
     configFile: path.resolve(__dirname, 'karma.conf.js'),
@@ -25,7 +28,17 @@ gulp.task('test', (cb) => {
   }, cb);
 });
 
-gulp.task('webpack:dev', ['copy'], (cb) => {
+// Build task
+gulp.task('build', (cb) => {
+  webpack(webpackConfig, function(err, stats) {
+    if(err) throw new gutil.PluginError("webpack:build", err);
+    gutil.log('Finished \'' + gutil.colors.cyan('webpack:build') + '\'' + ' after ' + gutil.colors.magenta(stats.toJson({timings: true}).time + ' ms'));
+    cb();
+  });
+});
+
+// Dev task
+gulp.task('server', ['copy'], (cb) => {
   let bundleStart = null;
   let compiler = webpack(webpackDevConfig);
 
@@ -34,7 +47,7 @@ gulp.task('webpack:dev', ['copy'], (cb) => {
   });
 
   compiler.plugin('done', () => {
-    gutil.log('Finished \'' + gutil.colors.cyan('webpack:build') + '\'' + ' after ' + gutil.colors.magenta((Date.now() - bundleStart) + 'ms'));
+    gutil.log('Finished \'' + gutil.colors.cyan('webpack:dev') + '\'' + ' after ' + gutil.colors.magenta((Date.now() - bundleStart) + 'ms'));
   });
 
   let server = new webpackDevServer(compiler, {
@@ -53,6 +66,6 @@ gulp.task('webpack:dev', ['copy'], (cb) => {
   });
 });
 
-gulp.task('default', ['webpack:dev'], () => {
+gulp.task('default', ['server'], () => {
   gulp.watch('src/dev.html', ['copy']);
 });
