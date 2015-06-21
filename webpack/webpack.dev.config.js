@@ -17,17 +17,13 @@ var config = {
     publicPath: '/dev/'
   },
 
-  stats: {
-    colors: true
-  },
-
   resolve: {
     extensions: ['', '.css', '.js'],
     alias: {
       'react$': process.cwd() + '/node_modules/react/dist/react.min.js',
       'react-blocks$': process.cwd() + '/src'
     },
-    modulesDirectories: ['node_modules', 'src']
+    modulesDirectories: ['node_modules', './src']
   },
 
   module: {
