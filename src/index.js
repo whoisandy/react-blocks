@@ -6,9 +6,32 @@ import Layout from './layout';
 class Block extends React.Component {
   render() {
     let props = this.props, styles = {};
+    let node = props.el || 'div';
+    let el = React.createFactory(node);
+
+    if(props.block){
+      styles = Layout.extend(styles, Layout.block);
+    }
+    if(props.hidden){
+      styles = Layout.extend(styles, Layout.hidden);
+    }
+    if(props.invisible){
+      styles = Layout.extend(styles, Layout.invisible);
+    }
+
+    if(props.relative){
+      styles = Layout.extend(styles, Layout.relative);
+    }
+    if(props.absolute){
+      styles = Layout.extend(styles, Layout.absolute);
+    }
 
     if(props.layout){
       styles = Layout.extend(styles, Layout.layout, Layout.vertical);
+    }
+
+    if(props.flex){
+      styles = Layout.extend(styles, Layout.flex);
     }
 
     if(props.vertical){
@@ -24,8 +47,11 @@ class Block extends React.Component {
       }
     }
 
-    if(props.flex){
-      styles = Layout.extend(styles, Layout.flex);
+    if(props.wrap){
+      styles = Layout.extend(styles, Layout.wrap);
+      if(props.reverse){
+        styles = Layout.extend(styles, Layout.wrapReverse);
+      }
     }
 
     switch(props.align){
@@ -82,39 +108,13 @@ class Block extends React.Component {
         break;
     }
 
-    if(props.wrap){
-      styles = Layout.extend(styles, Layout.wrap);
-      if(props.reverse){
-        styles = Layout.extend(styles, Layout.wrapReverse);
-      }
-    }
-
-    if(props.relative){
-      styles = Layout.extend(styles, Layout.relative);
-    }
-    if(props.absolute){
-      styles = Layout.extend(styles, Layout.absolute);
-    }
-
-    if(props.block){
-      styles = Layout.extend(styles, Layout.block);
-    }
-    if(props.hidden){
-      styles = Layout.extend(styles, Layout.hidden);
-    }
-    if(props.invisible){
-      styles = Layout.extend(styles, Layout.invisible);
-    }
-
-    return (
-      <div style={styles} {...props}>
-        {props.children}
-      </div>
-    );
+    props.style = Layout.extend(styles);
+    return el(props);
   }
 };
 
 Block.PropTypes = {
+  el: React.PropTypes.string,
   layout: React.PropTypes.bool,
   flex: React.PropTypes.bool,
   vertical: React.PropTypes.bool,
