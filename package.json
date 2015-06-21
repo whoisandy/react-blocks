@@ -5,7 +5,9 @@
   "main": "./lib/index.js",
   "scripts": {
     "start": "gulp",
-    "test": "gulp test"
+    "test": "gulp test",
+    "build": "gulp build",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
