@@ -4,112 +4,141 @@ import React from 'react';
 import Layout from './layout';
 
 class Block extends React.Component {
-  render() {
-    let props = this.props, styles = {};
-    let node = props.el || 'div';
-    let el = React.createFactory(node);
+  constructor(props) {
+    super(props);
+    this.rules = props.style || {};
+  }
 
-    if(props.block){
-      styles = Layout.extend(styles, Layout.block);
+  _buildGeneral() {
+    if(this.props.block){
+      this.rules = Layout.extend(this.rules, Layout.block);
     }
-    if(props.hidden){
-      styles = Layout.extend(styles, Layout.hidden);
+    if(this.props.hidden){
+      this.rules = Layout.extend(this.rules, Layout.hidden);
     }
-    if(props.invisible){
-      styles = Layout.extend(styles, Layout.invisible);
+    if(this.props.invisible){
+      this.rules = Layout.extend(this.rules, Layout.invisible);
     }
+    return this;
+  }
 
-    if(props.relative){
-      styles = Layout.extend(styles, Layout.relative);
+  _buildLayout() {
+    if(this.props.layout){
+      this.rules = Layout.extend(this.rules, Layout.layout, Layout.vertical);
     }
-    if(props.absolute){
-      styles = Layout.extend(styles, Layout.absolute);
+    if(this.props.flex){
+      this.rules = Layout.extend(this.rules, Layout.flex);
     }
-
-    if(props.layout){
-      styles = Layout.extend(styles, Layout.layout, Layout.vertical);
-    }
-
-    if(props.flex){
-      styles = Layout.extend(styles, Layout.flex);
-    }
-
-    if(props.vertical){
-      styles = Layout.extend(styles, Layout.vertical);
-      if(props.reverse){
-        styles = Layout.extend(styles, Layout.verticalReverse);
+    if(this.props.wrap){
+      this.rules = Layout.extend(this.rules, Layout.wrap);
+      if(this.props.reverse){
+        this.rules = Layout.extend(this.rules, Layout.wrapReverse);
       }
     }
-    if(props.horizontal) {
-      styles = Layout.extend(styles, Layout.horizontal);
-      if(props.reverse){
-        styles = Layout.extend(styles, Layout.horizontalReverse);
+    return this;
+  }
+
+  _buildDirection() {
+    if(this.props.vertical){
+      this.rules = Layout.extend(this.rules, Layout.vertical);
+      if(this.props.reverse){
+        this.rules = Layout.extend(this.rules, Layout.verticalReverse);
       }
     }
-
-    if(props.wrap){
-      styles = Layout.extend(styles, Layout.wrap);
-      if(props.reverse){
-        styles = Layout.extend(styles, Layout.wrapReverse);
+    if(this.props.horizontal) {
+      this.rules = Layout.extend(this.rules, Layout.horizontal);
+      if(this.props.reverse){
+        this.rules = Layout.extend(this.rules, Layout.horizontalReverse);
       }
     }
+    return this;
+  }
 
-    switch(props.align){
+  _buildPosition() {
+    if(this.props.relative){
+      this.rules = Layout.extend(this.rules, Layout.relative);
+    }
+    if(this.props.absolute){
+      this.rules = Layout.extend(this.rules, Layout.absolute);
+    }
+    return this;
+  }
+
+  _buildAlign() {
+    switch(this.props.align){
       case 'start':
-        styles = Layout.extend(styles, Layout.alignStart);
+        this.rules = Layout.extend(this.rules, Layout.alignStart);
         break;
       case 'center':
-        styles = Layout.extend(styles, Layout.alignCenter);
+        this.rules = Layout.extend(this.rules, Layout.alignCenter);
         break;
       case 'end':
-        styles = Layout.extend(styles, Layout.alignEnd);
+        this.rules = Layout.extend(this.rules, Layout.alignEnd);
         break;
       case 'stretch':
-        styles = Layout.extend(styles, Layout.alignStretch);
+        this.rules = Layout.extend(this.rules, Layout.alignStretch);
         break;
       default:
         break;
     }
 
-    switch(props.self){
+    switch(this.props.self){
       case 'start':
-        styles = Layout.extend(styles, Layout.selfAlignStart);
+        this.rules = Layout.extend(this.rules, Layout.selfAlignStart);
         break;
       case 'center':
-        styles = Layout.extend(styles, Layout.selfAlignCenter);
+        this.rules = Layout.extend(this.rules, Layout.selfAlignCenter);
         break;
       case 'end':
-        styles = Layout.extend(styles, Layout.selfAlignEnd);
+        this.rules = Layout.extend(this.rules, Layout.selfAlignEnd);
         break;
       case 'stretch':
-        styles = Layout.extend(styles, Layout.selfAlignStretch);
+        this.rules = Layout.extend(this.rules, Layout.selfAlignStretch);
         break;
       default:
         break;
     }
 
-    switch(props.justify){
+    return this;
+  }
+
+  _buildJustify() {
+    switch(this.props.justify){
       case 'start':
-        styles = Layout.extend(styles, Layout.justifyStart);
+        this.rules = Layout.extend(this.rules, Layout.justifyStart);
         break;
       case 'center':
-        styles = Layout.extend(styles, Layout.justifyCenter);
+        this.rules = Layout.extend(this.rules, Layout.justifyCenter);
         break;
       case 'end':
-        styles = Layout.extend(styles, Layout.justifyEnd);
+        this.rules = Layout.extend(this.rules, Layout.justifyEnd);
         break;
       case 'between':
-        styles = Layout.extend(styles, Layout.justifyBetween);
+        this.rules = Layout.extend(this.rules, Layout.justifyBetween);
         break;
       case 'around':
-        styles = Layout.extend(styles, Layout.justifyAround);
+        this.rules = Layout.extend(this.rules, Layout.justifyAround);
         break;
       default:
         break;
     }
+    return this;
+  }
 
-    props.style = Layout.extend(styles);
-    return el(props);
+  _buildStyles() {
+    return this._buildGeneral()
+                  ._buildLayout()
+                  ._buildPosition()
+                  ._buildDirection()
+                  ._buildAlign()
+                  ._buildJustify().rules;
+  }
+
+  render() {
+    let props = this.props;
+    let node = props.el || 'div';
+    let styles = this._buildStyles();
+    return React.createElement(node, Layout.extend(props, {style: styles}));
   }
 };
 

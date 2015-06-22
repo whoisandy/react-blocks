@@ -5,44 +5,33 @@ import TestUtils from 'react/lib/ReactTestUtils';
 import Block from '../src';
 
 describe('Block Spec: Basic', () => {
-  it('should be defined', () => {
+  it('should be defined and be empty', () => {
     let block = TestUtils.renderIntoDocument(<Block />);
+    let content = React.findDOMNode(block).textContent;
     expect(block).to.exist;
-  });
-
-  it('should have empty content', () => {
-    let block = TestUtils.renderIntoDocument(<Block />);
-    let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
-    let content = elem.getDOMNode().textContent;
     expect(content).to.eql('');
   });
 
-  it('should have a paragraph', () => {
+  it('should have a paragraph within block', () => {
     let block = TestUtils.renderIntoDocument(
       <Block>
         <p>Paragraph here</p>
       </Block>
     );
     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'p');
-    let content = elem.getDOMNode().textContent;
+    let content = React.findDOMNode(elem).textContent;
     expect(content).to.eql('Paragraph here');
   });
 
-  it('should have display flex', () => {
-    let block = TestUtils.renderIntoDocument(<Block layout />);
-    let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
-    expect(elem.props.style.display).to.eql('flex');
+  it('should have element tagName set to ul', () => {
+    let block = TestUtils.renderIntoDocument(
+      <Block el="ul" />
+    );
+    let type = React.findDOMNode(block).nodeName.toLowerCase();
+    expect(type).to.eql('ul');
   });
 
-  it('should have default flex', () => {
-    let block = TestUtils.renderIntoDocument(<Block flex/>);
-    let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
-    expect(elem.props.style.flexGrow).to.eql(1);
-    expect(elem.props.style.flexShrink).to.eql(1);
-    expect(elem.props.style.flexBasis).to.eql('auto');
-  });
-
-  it('should have display flex and  default flex', () => {
+  it('should have display flex and default flex attrs', () => {
     let block = TestUtils.renderIntoDocument(<Block layout flex/>);
     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
     expect(elem.props.style.display).to.eql('flex');
