@@ -8,7 +8,9 @@ var config = {
 
   output: {
     path: path.resolve(__dirname, '../lib'),
-    filename: 'index.js'
+    filename: 'index.js',
+    library: 'ReactBlocks',
+    libraryTarget: 'umd'
   },
 
   resolve: {
@@ -26,9 +28,16 @@ var config = {
     ]
   },
 
-  externals: {
-    "react": "React"
-  },
+  externals: [
+    {
+      "react": {
+        root: "React",
+        commonjs2: "react",
+        commonjs: "react",
+        amd: "react"
+      }
+    }
+  ],
 
   plugins: [
     new webpack.DefinePlugin({
