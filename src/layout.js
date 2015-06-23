@@ -11,7 +11,7 @@ const extend = (...args) => {
   return newObj;
 };
 
-let layout, flex;
+let layout, inline, flexAuto, flexNone;
 let horizontal, horizontalReverse, vertical, verticalReverse;
 let alignStart, alignCenter, alignEnd, alignStretch;
 let selfAlignStart, selfAlignCenter, selfAlignEnd, selfAlignStretch;
@@ -19,14 +19,25 @@ let justifyStart, justifyCenter, justifyEnd, justifyBetween, justifyAround;
 let block, hidden, invisible;
 let relative, absolute;
 let wrap, wrapReverse;
+let centered;
 
 layout = {
   display: 'flex'
 };
 
-flex = {
+inline = {
+  display: 'inline-flex'
+};
+
+flexAuto = {
   flexGrow: 1,
   flexShrink: 1,
+  flexBasis: 'auto'
+};
+
+flexNone = {
+  flexGrow: 0,
+  flexShrink: 0,
   flexBasis: 'auto'
 };
 
@@ -130,6 +141,8 @@ wrapReverse = {
   flexWrap: 'wrap-reverse'
 };
 
+centered = extend(layout, alignCenter, justifyCenter);
+
 export default {
   extend: extend,
   block: block,
@@ -138,7 +151,9 @@ export default {
   relative: relative,
   absolute: absolute,
   layout: layout,
-  flex: flex,
+  inline: inline,
+  flexAuto: flexAuto,
+  flexNone: flexNone,
   horizontal: horizontal,
   horizontalReverse: horizontalReverse,
   vertical: vertical,
@@ -157,5 +172,6 @@ export default {
   justifyBetween: justifyBetween,
   justifyAround: justifyAround,
   wrap: wrap,
-  wrapReverse: wrapReverse
+  wrapReverse: wrapReverse,
+  centered: centered
 };

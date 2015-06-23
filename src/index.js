@@ -22,18 +22,34 @@ class Block extends React.Component {
     return this;
   }
 
+  _buildPosition() {
+    if(this.props.relative){
+      this.rules = Layout.extend(this.rules, Layout.relative);
+    }
+    if(this.props.absolute){
+      this.rules = Layout.extend(this.rules, Layout.absolute);
+    }
+    return this;
+  }
+
   _buildLayout() {
     if(this.props.layout){
       this.rules = Layout.extend(this.rules, Layout.layout, Layout.vertical);
     }
-    if(this.props.flex){
-      this.rules = Layout.extend(this.rules, Layout.flex);
+    if(this.props.inline){
+      this.rules = Layout.extend(this.rules, Layout.inline, Layout.horizontal);
     }
-    if(this.props.wrap){
-      this.rules = Layout.extend(this.rules, Layout.wrap);
-      if(this.props.reverse){
-        this.rules = Layout.extend(this.rules, Layout.wrapReverse);
-      }
+    if(this.props.centered){
+      this.rules = Layout.extend(this.rules, Layout.centered);
+    }
+    return this;
+  }
+
+  _buildFlex() {
+    if(this.props.flex){
+      this.rules = Layout.extend(this.rules, Layout.flexAuto);
+    } else {
+      this.rules = Layout.extend(this.rules, Layout.flexNone);
     }
     return this;
   }
@@ -54,12 +70,12 @@ class Block extends React.Component {
     return this;
   }
 
-  _buildPosition() {
-    if(this.props.relative){
-      this.rules = Layout.extend(this.rules, Layout.relative);
-    }
-    if(this.props.absolute){
-      this.rules = Layout.extend(this.rules, Layout.absolute);
+  _buildWrap() {
+    if(this.props.wrap){
+      this.rules = Layout.extend(this.rules, Layout.wrap);
+      if(this.props.reverse){
+        this.rules = Layout.extend(this.rules, Layout.wrapReverse);
+      }
     }
     return this;
   }
@@ -126,25 +142,34 @@ class Block extends React.Component {
   }
 
   _buildStyles() {
-    return this._buildGeneral()
-                  ._buildLayout()
+    let style = this._buildGeneral()
                   ._buildPosition()
+                  ._buildLayout()
+                  ._buildFlex()
+                  ._buildWrap()
                   ._buildDirection()
                   ._buildAlign()
-                  ._buildJustify().rules;
+                  ._buildJustify();
+    return style.rules;
   }
 
   render() {
     let props = this.props;
     let node = props.el || 'div';
-    let styles = this._buildStyles();
-    return React.createElement(node, Layout.extend(props, {style: styles}));
+    let rules = this._buildStyles();
+    return React.createElement(node, Layout.extend(props, {style: rules}));
   }
 };
 
 Block.PropTypes = {
   el: React.PropTypes.string,
+  block: React.PropTypes.bool,
+  hidden: React.PropTypes.bool,
+  invisible: React.PropTypes.bool,
+  relative: React.PropTypes.bool,
+  absolute: React.PropTypes.bool,
   layout: React.PropTypes.bool,
+  inline: React.PropTypes.bool,
   flex: React.PropTypes.bool,
   vertical: React.PropTypes.bool,
   horizontal: React.PropTypes.bool,
@@ -152,11 +177,7 @@ Block.PropTypes = {
   align: React.PropTypes.oneOf(['start', 'center', 'end', 'stretch']),
   self: React.PropTypes.oneOf(['start', 'center', 'end', 'stretch']),
   justify: React.PropTypes.oneOf(['start', 'center', 'end', 'between', 'around']),
-  relative: React.PropTypes.bool,
-  absolute: React.PropTypes.bool,
-  block: React.PropTypes.bool,
-  hidden: React.PropTypes.bool,
-  invisible: React.PropTypes.bool
+  centered: React.PropTypes.bool
 };
 
 export default Block;

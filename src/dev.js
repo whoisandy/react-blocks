@@ -7,18 +7,19 @@ import 'dev.css';
 class App extends React.Component {
   render() {
     let styles = {
-      common: {
-        minWidth: 200
+      app: {
+        minWidth: 800
       },
-      papaya: {
-        backgroundColor: 'papayawhip'
+      common: {
+        width: 200
       }
     };
+
     return (
-      <Block className="app" layout horizontal>
-        <Block style={styles.common}>One</Block>
-        <Block flex style={styles.papaya}>Two</Block>
-        <Block style={styles.common}>Three</Block>
+      <Block className="app" style={styles.app} layout horizontal>
+        <Block style={styles.common}>Alpha</Block>
+        <Block flex style={styles.common}>Beta</Block>
+        <Block style={styles.common}>Gamma</Block>
       </Block>
     );
   }

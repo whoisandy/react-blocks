@@ -5,17 +5,17 @@
 }
 
 body{
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 #container{
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .app{
-  margin: 12px;
+  margin: 0 auto;
   padding: 4px;
   background: #999999;
 }
