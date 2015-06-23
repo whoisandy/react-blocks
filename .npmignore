@@ -6,6 +6,6 @@ gulpfile.js
 karma.conf.js
 
 src
-test
+tests
 dev
 webpack
