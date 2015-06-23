@@ -3,13 +3,7 @@
 
 # React Blocks
 
-```bash
-npm install react-blocks
-```
-
-A higher-level react component to manage complex layouts using flexbox. Everything is just another block :)
-
-Heavily inspired by [Polymer layout.html](https://www.polymer-project.org/0.5/docs/polymer/layout-attrs.html), [LayoutJS](https://github.com/basarat/layoutjs) and the [CSSinJS](https://speakerdeck.com/vjeux/react-css-in-js) pattern.
+A higher-level react component to manage complex layouts using flexbox. Everything is just another block. Heavily inspired by [Polymer layout.html](https://www.polymer-project.org/0.5/docs/polymer/layout-attrs.html), [LayoutJS](https://github.com/basarat/layoutjs) and the [CSSinJS](https://speakerdeck.com/vjeux/react-css-in-js) pattern.
 
 > Just pure layout, No more, No less.
 
@@ -20,7 +14,13 @@ Please note, it does **NOT** handle mising browser features. Please use [Moderni
 
 ## Usage
 
-Start by importing/requiring react-blocks.
+Install via `npm`. Use `--save` to include it in your *package.json*.
+
+```bash
+npm install react-blocks
+```
+
+Start by importing/requiring react-blocks within your react code.
 
 ```js
 // using an ES6 transpiler
@@ -100,7 +100,7 @@ npm test
 ```
 
 ## License
-MIT &copy; 2015 [!whoisandie](whiosandie)
+MIT &copy; 2015 [whoisandie](whiosandie)
 
 [trav_img]: https://api.travis-ci.org/whoisandie/react-blocks.svg
 [trav_site]: https://travis-ci.org/whoisandie/react-blocks
