@@ -22,13 +22,13 @@ Please note, it does **NOT** handle mising browser features. Please use [Moderni
 
 Start by importing/requiring react-blocks.
 
-``js
+```js
 // using an ES6 transpiler
 import Block from 'react-blocks';
 
 // not using an ES6 transpiler
 var Block = require('react-blocks');
-``
+```
 
 There's also a umd version available. The component is available on `window.ReactBlocks`.
 
