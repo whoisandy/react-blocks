@@ -1,4 +1,5 @@
 [![Travis Status][trav_img]][trav_site]
+[![NPM Package][npm_img]][npm_site]
 [![Dependency Status][david_img]][david_site]
 
 # React Blocks
@@ -104,6 +105,8 @@ MIT &copy; 2015 [whoisandie](whiosandie)
 
 [trav_img]: https://api.travis-ci.org/whoisandie/react-blocks.svg
 [trav_site]: https://travis-ci.org/whoisandie/react-blocks
+[npm_img]: https://img.shields.io/npm/v/react-blocks.svg
+[npm_site]: https://www.npmjs.org/package/react-blocks
 [david_img]: https://img.shields.io/david/whoisandie/react-blocks.svg
 [david_site]: https://david-dm.org/whoisandie/react-blocks
 [whoisandie]: http://whoisandie.com
