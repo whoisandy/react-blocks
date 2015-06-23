@@ -1,0 +1,124 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/var/nvm/versions/io.js/v2.2.1/bin/iojs',
+1 verbose cli   '/usr/local/var/nvm/versions/io.js/v2.2.1/bin/npm',
+1 verbose cli   'publish' ]
+2 info using npm@2.11.0
+3 info using node@v2.2.1
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec { raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/Users/Asher/Github/react-blocks',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /Users/Asher/.npm/react-blocks/1.0.0/package.tgz not in flight; packing
+9 verbose tar pack [ '/Users/Asher/.npm/react-blocks/1.0.0/package.tgz',
+9 verbose tar pack   '/Users/Asher/Github/react-blocks' ]
+10 verbose tarball /Users/Asher/.npm/react-blocks/1.0.0/package.tgz
+11 verbose folder /Users/Asher/Github/react-blocks
+12 info prepublish react-blocks@1.0.0
+13 verbose unsafe-perm in lifecycle true
+14 verbose addLocalTarball adding from inside cache /Users/Asher/.npm/react-blocks/1.0.0/package.tgz
+15 silly cache afterAdd react-blocks@1.0.0
+16 verbose afterAdd /Users/Asher/.npm/react-blocks/1.0.0/package/package.json not in flight; writing
+17 verbose afterAdd /Users/Asher/.npm/react-blocks/1.0.0/package/package.json written
+18 silly publish { name: 'react-blocks',
+18 silly publish   version: '1.0.0',
+18 silly publish   description: 'A higher-level react component to manage complex layouts using flexbox.',
+18 silly publish   main: 'lib/index',
+18 silly publish   scripts:
+18 silly publish    { start: 'gulp',
+18 silly publish      test: 'gulp test',
+18 silly publish      build: 'gulp build',
+18 silly publish      prepublish: 'npm run build' },
+18 silly publish   repository:
+18 silly publish    { type: 'git',
+18 silly publish      url: 'git+https://github.com/whoisandie/react-blocks.git' },
+18 silly publish   author: { name: 'Bhargav Anand' },
+18 silly publish   license: 'MIT',
+18 silly publish   bugs: { url: 'https://github.com/whoisandie/react-blocks/issues' },
+18 silly publish   homepage: 'https://github.com/whoisandie/react-blocks#readme',
+18 silly publish   dependencies: { react: '^0.13.3' },
+18 silly publish   devDependencies:
+18 silly publish    { babel: '^5.5.8',
+18 silly publish      'babel-core': '^5.5.8',
+18 silly publish      'babel-loader': '^5.1.4',
+18 silly publish      chai: '^3.0.0',
+18 silly publish      'css-loader': '^0.14.5',
+18 silly publish      'es5-shim': '^4.1.6',
+18 silly publish      gulp: '^3.9.0',
+18 silly publish      'gulp-open': '^0.3.2',
+18 silly publish      'gulp-rename': '^1.2.2',
+18 silly publish      'gulp-shell': '^0.4.2',
+18 silly publish      'gulp-util': '^3.0.5',
+18 silly publish      karma: '^0.12.36',
+18 silly publish      'karma-chai': '^0.1.0',
+18 silly publish      'karma-chai-plugins': '^0.6.0',
+18 silly publish      'karma-cli': '0.0.4',
+18 silly publish      'karma-mocha': '^0.1.10',
+18 silly publish      'karma-mocha-reporter': '^1.0.2',
+18 silly publish      'karma-phantomjs-launcher': '^0.2.0',
+18 silly publish      'karma-webpack': '^1.5.1',
+18 silly publish      mocha: '^2.2.5',
+18 silly publish      'node-libs-browser': '^0.5.2',
+18 silly publish      phantomjs: '^1.9.17',
+18 silly publish      'style-loader': '^0.12.3',
+18 silly publish      webpack: '^1.9.11',
+18 silly publish      'webpack-dev-server': '^1.9.0' },
+18 silly publish   readme: '[![Travis Status][trav_img]][trav_site]\n[![NPM Package][npm_img]][npm_site]\n[![Dependency Status][david_img]][david_site]\n\n# React Blocks\n\nA higher-level react component to manage complex layouts using flexbox. Everything is just another block. Heavily inspired by [Polymer layout.html](https://www.polymer-project.org/0.5/docs/polymer/layout-attrs.html), [LayoutJS](https://github.com/basarat/layoutjs) and the [CSSinJS](https://speakerdeck.com/vjeux/react-css-in-js) pattern.\n\n> Just pure layout, No more, No less.\n\n## About\nReact blocks uses a declarative approach to build complex layouts on top of [CSS Flexbox](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Flexible_boxes). Flexbox properties are exposed as attributes on a higher-level react component.\n\nPlease note, it does **NOT** handle mising browser features. Please use [Modernizr](http://modernizr.com/) with Polyfills to achieve that.\n\n## Usage\n\nInstall via `npm`. Use `--save` to include it in your *package.json*.\n\n```bash\nnpm install react-blocks\n```\n\nStart by importing/requiring react-blocks within your react code.\n\n```js\n// using an ES6 transpiler\nimport Block from \'react-blocks\';\n\n// not using an ES6 transpiler\nvar Block = require(\'react-blocks\');\n```\n\nThere\'s also a umd version available. The component is available on `window.ReactBlocks`.\n\nA block is just a block level div element by default. You can make it a flex container by adding a `layout` attribute. Further to specify a direction, add `horizontal` or `vertical` attributes for row or column respectively. However the default direction would be set to vertical if nothing is specified.\n\n```js\nlet App = React.createClass({\n  render() {\n    return (\n      <Block layout horizontal>\n        <div>Alpha</div>\n        <div>Beta</div>\n      </Block>\n    );\n  }\n});\n```\n\nThe direction of a block layout can be reversed by adding a `reverse` attribute.\n\n```js\nlet AppReverse = React.createClass({\n  render() {\n    return (\n      <Block layout vertical reverse>\n        <div>Alpha</div>\n        <div>Beta</div>\n      </Block>\n    );\n  }\n});\n```\n\nBlocks can further be nested. A block could contain multiple blocks as well.\n\n```js\nlet AppNested = React.createClass({\n  render() {\n    return(\n      <Block layout horizontal>\n        <Block className="sidebar" layout vertical>\n          <Block>Alpha</Block>\n          <Block>Beta</Block>\n        </Block>\n        <Block className="content" layout horizontal reverse>\n          <Block>Gamma</Block>\n          <Block>Delta</Block>\n        </Block>\n      </Block>\n    );\n  }\n});\n```\n\n## Developers\n\nClone the repo using `git clone https://github.com/whoisandie/react-blocks.git`, cd into the directory install dependencies. Type `npm start` to start a local dev server on port 8080.\n\n```bash\ncd react-blocks && npm install\nnpm start\n```\n\nThe repository comes with a set of tests, which serve also as examples. To run the tests, type `npm test` once you install the dependencies.\n\n```bash\ncd react-blocks && npm install\nnpm test\n```\n\n## License\nMIT &copy; 2015 [whoisandie](whiosandie)\n\n[trav_img]: https://api.travis-ci.org/whoisandie/react-blocks.svg\n[trav_site]: https://travis-ci.org/whoisandie/react-blocks\n[npm_img]: https://img.shields.io/npm/v/react-blocks.svg\n[npm_site]: https://www.npmjs.org/package/react-blocks\n[david_img]: https://img.shields.io/david/whoisandie/react-blocks.svg\n[david_site]: https://david-dm.org/whoisandie/react-blocks\n[whoisandie]: http://whoisandie.com\n',
+18 silly publish   readmeFilename: 'README.md',
+18 silly publish   gitHead: '2b5ec373a688c4066cfe97cc0d1c026e91e3c2df',
+18 silly publish   _id: 'react-blocks@1.0.0',
+18 silly publish   _shasum: '22605ae7e247bd0d54c5dbf00656402dcd4fd2cb',
+18 silly publish   _from: '.' }
+19 verbose getPublishConfig undefined
+20 silly mapToRegistry name react-blocks
+21 silly mapToRegistry using default registry
+22 silly mapToRegistry registry https://registry.npmjs.org/
+23 silly mapToRegistry uri https://registry.npmjs.org/react-blocks
+24 verbose publish registryBase https://registry.npmjs.org/
+25 silly publish uploading /Users/Asher/.npm/react-blocks/1.0.0/package.tgz
+26 verbose request uri https://registry.npmjs.org/react-blocks
+27 verbose request sending authorization for write operation
+28 info attempt registry request try #1 at 22:29:57
+29 verbose request id 6e7364af48fb3458
+30 http request PUT https://registry.npmjs.org/react-blocks
+31 http 403 https://registry.npmjs.org/react-blocks
+32 verbose headers { 'content-type': 'application/json',
+32 verbose headers   'cache-control': 'max-age=60',
+32 verbose headers   'content-length': '128',
+32 verbose headers   'accept-ranges': 'bytes',
+32 verbose headers   date: 'Tue, 23 Jun 2015 02:29:58 GMT',
+32 verbose headers   via: '1.1 varnish',
+32 verbose headers   connection: 'keep-alive',
+32 verbose headers   'x-served-by': 'cache-ord1729-ORD',
+32 verbose headers   'x-cache': 'MISS',
+32 verbose headers   'x-cache-hits': '0',
+32 verbose headers   'x-timer': 'S1435026597.661668,VS0,VE342' }
+33 verbose request invalidating /Users/Asher/.npm/registry.npmjs.org/react-blocks on PUT
+34 error publish Failed PUT 403
+35 verbose stack Error: "You cannot publish over the previously published version 1.0.0. Try bumping the version to 2.0.0" : react-blocks
+35 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/var/nvm/versions/io.js/v2.2.1/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:247:14)
+35 verbose stack     at Request._callback (/usr/local/var/nvm/versions/io.js/v2.2.1/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:170:14)
+35 verbose stack     at Request.self.callback (/usr/local/var/nvm/versions/io.js/v2.2.1/lib/node_modules/npm/node_modules/request/request.js:368:22)
+35 verbose stack     at emitTwo (events.js:87:13)
+35 verbose stack     at Request.emit (events.js:172:7)
+35 verbose stack     at Request.<anonymous> (/usr/local/var/nvm/versions/io.js/v2.2.1/lib/node_modules/npm/node_modules/request/request.js:1219:14)
+35 verbose stack     at emitOne (events.js:82:20)
+35 verbose stack     at Request.emit (events.js:169:7)
+35 verbose stack     at IncomingMessage.<anonymous> (/usr/local/var/nvm/versions/io.js/v2.2.1/lib/node_modules/npm/node_modules/request/request.js:1167:12)
+35 verbose stack     at emitNone (events.js:72:20)
+36 verbose statusCode 403
+37 verbose pkgid react-blocks
+38 verbose cwd /Users/Asher/Github/react-blocks
+39 error Darwin 14.4.0
+40 error argv "/usr/local/var/nvm/versions/io.js/v2.2.1/bin/iojs" "/usr/local/var/nvm/versions/io.js/v2.2.1/bin/npm" "publish"
+41 error node v2.2.1
+42 error npm  v2.11.0
+43 error code E403
+44 error "You cannot publish over the previously published version 1.0.0. Try bumping the version to 2.0.0" : react-blocks
+45 error If you need help, you may report this error at:
+45 error     <https://github.com/npm/npm/issues>
+46 verbose exit [ 1, true ]
