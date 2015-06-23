@@ -100,7 +100,7 @@ npm test
 ```
 
 ## License
-MIT &copy; 2015 [whoisandie][whiosandie]
+MIT &copy; 2015 [!whoisandie](whiosandie)
 
 [trav_img]: https://api.travis-ci.org/whoisandie/react-blocks.svg
 [trav_site]: https://travis-ci.org/whoisandie/react-blocks
