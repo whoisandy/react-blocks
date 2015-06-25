@@ -2,7 +2,7 @@
 
 import React from 'react';
 import TestUtils from 'react/lib/ReactTestUtils';
-import Block from '../src';
+import Block from '../';
 
 describe('Block Spec: Basic', () => {
   it('should be defined and be empty', () => {
