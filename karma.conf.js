@@ -11,11 +11,11 @@ module.exports = function(config) {
     reporters: ['mocha'],
 
     files: [
-      'tests/index.js'
+      './src/tests/index.js'
     ],
 
     preprocessors: {
-      'tests/index.js': ['webpack']
+      'src/tests/index.js': ['webpack']
     },
 
     plugins: [
