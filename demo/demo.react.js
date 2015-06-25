@@ -2,13 +2,15 @@
 
 import React from 'react';
 import Block from 'react-blocks';
-import 'dev.css';
+import Layout from 'react-blocks/lib/layout';
+import './demo.css';
 
 class App extends React.Component {
   render() {
     let styles = {
       app: {
-        minWidth: 800
+        minWidth: 800,
+        backgroundColor: 'papayawhip'
       },
       common: {
         width: 200
