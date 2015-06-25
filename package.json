@@ -4,10 +4,11 @@
   "description": "A higher-level react component to manage complex layouts using flexbox.",
   "main": "lib/index",
   "scripts": {
-    "start": "gulp",
-    "test": "gulp test",
-    "build": "gulp build",
-    "prepublish": "npm run build"
+    "test": "karma start",
+    "build": "scripts/build.sh",
+    "release": "scripts/release.sh",
+    "prepublish": "npm run build",
+    "demo": "webpack-dev-server --config demo/webpack.config.js --content-base demo --hot --inline"
   },
   "repository": {
     "type": "git",
@@ -29,11 +30,6 @@
     "chai": "^3.0.0",
     "css-loader": "^0.14.5",
     "es5-shim": "^4.1.6",
-    "gulp": "^3.9.0",
-    "gulp-open": "^0.3.2",
-    "gulp-rename": "^1.2.2",
-    "gulp-shell": "^0.4.2",
-    "gulp-util": "^3.0.5",
     "karma": "^0.12.36",
     "karma-chai": "^0.1.0",
     "karma-chai-plugins": "^0.6.0",
