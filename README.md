@@ -1,13 +1,13 @@
 # React Blocks [![NPM Package][npm_img]][npm_site] [![Travis Status][trav_img]][trav_site]
 
-A higher-level react component to manage complex layouts using flexbox. Everything is just another block. Heavily inspired by [Polymer layout.html](https://www.polymer-project.org/0.5/docs/polymer/layout-attrs.html), [LayoutJS](https://github.com/basarat/layoutjs) and the [CSSinJS](https://speakerdeck.com/vjeux/react-css-in-js) pattern.
+A higher-level react component to manage complex layouts using flexbox. Everything is just another block. Heavily inspired by [Polymer layout.html](polymer), [LayoutJS](layoutjs) and the [CSSinJS](cssinjs) pattern.
 
 > Just pure layout, No more, No less.
 
 ## About
-React blocks uses a declarative approach to build complex layouts on top of [CSS Flexbox](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Flexible_boxes). Flexbox properties are exposed as attributes on a higher-level react component.
+React blocks uses a declarative approach to build complex layouts on top of [CSS Flexbox](flexbox). Flexbox properties are exposed as attributes on a higher-level react component.
 
-Please note, it does **NOT** handle mising browser features. Please use [Modernizr](http://modernizr.com/) with Polyfills to achieve that.
+Please note, it does **NOT** handle mising browser features. Please use [Modernizr](modernizr) with Polyfills to achieve that.
 
 ## Usage
 
@@ -49,16 +49,16 @@ let App = React.createClass({
 The direction of a block layout can be reversed by adding a `reverse` attribute. Also to make a flex-item stretch its width use the `flex` attribute on a flex-item. The `wrap` attribute wraps all flex-items inside a flex-container.
 
 ```js
-let AppReverse = React.createClass({
+let Reverse = React.createClass({
   render() {
     let styles = {
-      block: {
+      app: {
         width: 200
       }
     };
 
     return (
-      <Block layout vertical reverse wrap style={styles.block}>
+      <Block layout vertical reverse wrap style={styles.app}>
         <div>Alpha</div>
         <div flex>Beta</div>
       </Block>
@@ -72,16 +72,16 @@ let AppReverse = React.createClass({
 By default flex-items *stretch* to fit the cross-axis and are *start* justified. The `align` and `justify` attributes are used to align and justify flex-items. Please note *align* & *justify* attributes have to be declared on a parent block.
 
 ```js
-let AppAligned = React.createClass({
+let AlignedJustified = React.createClass({
   render() {
     let styles = {
-      block: {
+      app: {
         height: 200
       }
     };
 
     return (
-      <Block layout horizontal align="center" justify="end" style={styles.block}>
+      <Block layout horizontal align="center" justify="end" style={styles.app}>
         <Block>Alpha</Block>
         <Block>Beta</Block>
       </Block>
@@ -93,18 +93,38 @@ let AppAligned = React.createClass({
 Further flex-items can be self aligned across the cross-axis using the self attribute on the flex-item itself.
 
 ```js
-let AppSelfAligned = React.createClass({
+let SelfAligned = React.createClass({
   render() {
     let styles = {
-      block: {
+      app: {
         height: 200
       }
     };
 
     return (
-      <Block layout horizontal align="center" justify="end" style={styles.block}>
+      <Block layout horizontal align="center" justify="end" style={styles.app}>
         <Block self="start">Alpha</Block>
         <Block self="end">Beta</Block>
+      </Block>
+    );
+  }
+});
+```
+
+To center align and center justify an item within a flex-container, use the `centered` attribute.
+
+```js
+let Centered = React.createClass({
+  render() {
+    let styles = {
+      app: {
+        height: 200
+      }
+    };
+
+    return (
+      <Block layout horizontal centered style={styles.app}>
+        <div>I'm centered</div>
       </Block>
     );
   }
@@ -115,7 +135,7 @@ let AppSelfAligned = React.createClass({
 Blocks can further be nested. A block could contain multiple blocks as well. Use the `layout` attribute on a flex item to make a it a flex-container. However its not necessary that all children inside a flex-container are wrapped inside a *Block*.
 
 ```js
-let AppNested = React.createClass({
+let Nested = React.createClass({
   render() {
     return(
       <Block layout horizontal>
@@ -155,7 +175,11 @@ The repository comes with a set of tests, which serve also as examples. To run t
 ## License
 MIT &copy; 2015 [whoisandie](whiosandie)
 
-
+[polymer]: https://www.polymer-project.org/0.5/docs/polymer/layout-attrs.html
+[layoutjs]: https://github.com/basarat/layoutjs
+[cssinjs]: https://speakerdeck.com/vjeux/react-css-in-js
+[flexbox]: https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Flexible_boxes
+[modernizr]: http://modernizr.com
 [whoisandie]: http://whoisandie.com
 
 [trav_img]: https://api.travis-ci.org/whoisandie/react-blocks.svg
