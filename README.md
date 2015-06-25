@@ -124,7 +124,7 @@ let Centered = React.createClass({
 
     return (
       <Block layout horizontal centered style={styles.app}>
-        <div>I'm centered</div>
+        <div>Centered</div>
       </Block>
     );
   }
