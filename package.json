@@ -1,6 +1,6 @@
 {
   "name": "react-blocks",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A higher-level react component to manage complex layouts using flexbox.",
   "main": "lib/index",
   "scripts": {
