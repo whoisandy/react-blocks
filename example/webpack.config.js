@@ -4,11 +4,11 @@ var path = require('path');
 var webpack = require('webpack');
 
 var config = {
-  entry: path.resolve(__dirname, 'demo.react.js'),
+  entry: path.resolve(__dirname, 'example.react.js'),
 
   output: {
     path: path.resolve(__dirname, 'demo/__build__'),
-    filename: 'demo.js',
+    filename: 'example.js',
     publicPath: '/__build__/'
   },
 

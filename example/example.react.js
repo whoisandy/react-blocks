@@ -3,13 +3,12 @@
 import React from 'react';
 import Block from 'react-blocks';
 import Layout from 'react-blocks/lib/layout';
-import './demo.css';
+import './example.css';
 
 class App extends React.Component {
   render() {
     let styles = {
       app: {
-        width: 300,
         height: 200,
         backgroundColor: 'papayawhip'
       },
@@ -19,7 +18,7 @@ class App extends React.Component {
     };
 
     return (
-      <Block className="app" layout horizontal wrap align="center" justify="center" style={styles.app}>
+      <Block className="app" layout horizontal align="center" justify="center" style={styles.app}>
         <Block self="start" style={styles.common}>Alpha</Block>
         <Block style={styles.common}>Beta</Block>
         <Block self="end" style={styles.common}>Gamma</Block>
