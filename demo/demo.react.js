@@ -9,7 +9,8 @@ class App extends React.Component {
   render() {
     let styles = {
       app: {
-        minWidth: 800,
+        width: 300,
+        height: 200,
         backgroundColor: 'papayawhip'
       },
       common: {
@@ -18,10 +19,10 @@ class App extends React.Component {
     };
 
     return (
-      <Block className="app" style={styles.app} layout horizontal>
-        <Block style={styles.common}>Alpha</Block>
-        <Block flex style={styles.common}>Beta</Block>
-        <Block style={styles.common}>Gamma</Block>
+      <Block className="app" layout horizontal wrap align="center" justify="center" style={styles.app}>
+        <Block self="start" style={styles.common}>Alpha</Block>
+        <Block style={styles.common}>Beta</Block>
+        <Block self="end" style={styles.common}>Gamma</Block>
       </Block>
     );
   }
