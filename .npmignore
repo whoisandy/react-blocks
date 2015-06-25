@@ -1,11 +1,10 @@
-.DS_Store
-.gitignore
 .editorconfig
+.travis.yml
 
 gulpfile.js
 karma.conf.js
 
 src
-tests
-dev
-webpack
+scripts
+demo
+
