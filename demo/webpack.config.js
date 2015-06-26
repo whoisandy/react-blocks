@@ -8,7 +8,7 @@ var config = {
   entry: path.resolve(__dirname, 'demo.js'),
 
   output: {
-    path: path.resolve(__dirname, '../tmp'),
+    path: path.resolve(__dirname, '../website'),
     filename: 'bundle.js'
   },
 
@@ -32,7 +32,7 @@ var config = {
   },
 
   plugins: [
-    new ExtractTextPlugin("../tmp/bundle.css"),
+    new ExtractTextPlugin("../website/bundle.css"),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
