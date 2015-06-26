@@ -16,6 +16,7 @@ class AppHeader extends React.Component {
 					<p>React blocks uses a declarative approach to build complex layouts on top of CSS Flexbox. Flexbox properties are exposed as attributes on a higher-level react component.</p>
 					<p>Please note, it does <b>NOT</b> handle mising browser features. Please use <a href="http://modernizr.com/">Modernizr</a> with Polyfills to achieve that.</p>
 				</section>
+				<p><a href="https://github.com/whoisandie/react-blocks">View on Github</a></p>
 			</Block>
 		);
 	}
@@ -211,6 +212,29 @@ class AppJustified extends React.Component {
 	}
 }
 
+class AppCentered extends React.Component {
+  render() {
+		let code = "<Block layout horizontal centered style=\"height:200px\">\n  <Block>Centered</Block>\n</Block>";
+		let styles = {
+			vertical: {
+				height: 200
+			}
+		};
+    return (
+			<div className="centered">
+				<h4>Centered (Cross-axis & Main-axis)</h4>
+				<p>Further more, an item in a flex-container can be aligned and justified using the centered attribute.</p>
+				<pre>
+					<code>{code}</code>
+				</pre>
+				<Block className="demo" layout horizontal centered style={styles.vertical}>
+					<Block>Centered</Block>
+				</Block>
+			</div>
+		);
+  }
+}
+
 class AppSelfAligned extends React.Component {
   render() {
 		let code = "<Block layout horizontal>\n  <Block flex self=\"start\">Alpha</Block>\n  <Block flex self=\"center\">Beta</Block>\n  <Block flex self=\"end\">Gamma</Block>\n  <Block flex>Delta</Block>\n</Block>";
@@ -338,6 +362,7 @@ class App extends React.Component {
 				<AppLayoutFlexible />
 				<AppAligned />
 				<AppJustified />
+				<AppCentered />
 				<AppSelfAligned />
 				<AppWrapped />
 				<AppNested />
