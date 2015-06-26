@@ -7,7 +7,7 @@ A higher-level react component to manage complex layouts using flexbox. Everythi
 ## About
 React blocks uses a declarative approach to build complex layouts on top of [CSS Flexbox](flexbox). Flexbox properties are exposed as attributes on a higher-level react component.
 
-Please note, it does **NOT** handle mising browser features. Please use [Modernizr](modernizr) with Polyfills to achieve that.
+Please note, it does **NOT** handle missing browser features. Please use [Modernizr](modernizr) with Polyfills to achieve that.
 
 ## Usage
 
