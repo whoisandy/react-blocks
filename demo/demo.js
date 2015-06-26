@@ -14,6 +14,7 @@ class AppHeader extends React.Component {
 				</header>
 				<section>
 					<p>React blocks uses a declarative approach to build complex layouts on top of CSS Flexbox. Flexbox properties are exposed as attributes on a higher-level react component.</p>
+					<p>Please note, it does <b>NOT</b> handle mising browser features. Please use [Modernizr](modernizr) with Polyfills to achieve that.</p>
 				</section>
 			</Block>
 		);
