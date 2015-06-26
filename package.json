@@ -8,7 +8,7 @@
     "build": "scripts/build.sh",
     "release": "scripts/release.sh",
     "prepublish": "npm run build",
-    "demo": "webpack-dev-server --config example/webpack.config.js --content-base example --hot --inline"
+    "demo": "webpack-dev-server --config demo/webpack.demo.config.js --content-base demo --hot --inline"
   },
   "repository": {
     "type": "git",

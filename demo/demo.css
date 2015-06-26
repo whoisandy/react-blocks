@@ -1,0 +1,71 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 14px;
+}
+
+#container {
+  margin: 0;
+  padding: 0;
+}
+
+.demo {
+  margin: 20px 0;
+  padding: 4px;
+  background: peachpuff;
+}
+
+.demo > div {
+  margin: 4px;
+  padding: 12px;
+  background: white;
+}
+
+
+header, footer {
+  text-align: center;
+}
+header{
+  margin-bottom: 40px;
+}
+footer{
+  margin: 40px 0;
+}
+footer > p{
+  margin: 0;
+  font-size: 12px;
+}
+a{
+  color: blue;
+}
+h1 > small{
+  font-weight: 200;
+}
+h4{
+  margin: 20px 0 0 0;
+  font-weight: 500;
+  font-size: 18px;
+}
+pre{
+  margin: 0;
+  padding: 8px 12px;
+  background: whitesmoke;
+  overflow: scroll;
+}
+pre > code{
+  font-family: "Source Code Pro";
+}
+
+@media only screen and (min-device-width: 480px) {
+  body{
+    padding: 0 20px;
+  }
+}
