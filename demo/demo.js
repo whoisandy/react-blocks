@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Block from '../lib';
+import Layout from '../lib/layout';
 import './demo.css';
 
 class AppHeader extends React.Component {
@@ -24,7 +25,7 @@ class AppFooter extends React.Component {
     return (
 			<Block className="footer">
 				<footer>
-					<p>Github page powered by React and Blocks :)</p>
+					<p>Github page built using React and Blocks :)</p>
 					<p>Built with &hearts; &#8226; MIT &copy; <a href="http://whoisandie.com">whoisandie</a></p>
 				</footer>
 			</Block>
@@ -267,6 +268,59 @@ class AppWrapped extends React.Component {
   }
 }
 
+class AppNested extends React.Component {
+  render() {
+		let styles = {
+			nested: {
+				height: 400
+			},
+
+			common: {
+				margin: 4,
+				padding: 12,
+				background: 'white'
+			},
+
+			transparent: {
+				margin: 0,
+				padding: 0,
+				background: 'transparent'
+			}
+		};
+		return (
+			<div className="nested">
+				<h4>Nested Blocks (example of a complex layout)</h4>
+				<p>Blocks can further be nested. Below shown is an example of a complex layout built using blocks. Check out the source <a target="_blank" href="https://github.com/whoisandie/react-blocks/blob/master/demo/demo.js">here</a></p>
+				<Block className="demo" layout vertical style={styles.nested}>
+					<Block className="topbar" layout horizontal style={styles.transparent}>
+						<Block className="logo" style={styles.common}>Brand</Block>
+						<Block style={Layout.extend(styles.common, {width: 200})}>Searchbar</Block>
+						<Block className="nav" layout vertical flex style={styles.transparent}>
+							<Block self="end" style={styles.common}>Navigation</Block>
+						</Block>
+					</Block>
+					<Block className="main" layout horizontal flex style={styles.transparent}>
+						<Block className="sidebar" layout vertical style={Layout.extend(styles.transparent, {width: 200})}>
+							<Block className="categories" flex style={styles.common}>Categories</Block>
+							<Block className="settings" style={styles.common}>Settings</Block>
+						</Block>
+						<Block className="content" layout vertical flex style={styles.transparent}>
+							<Block style={styles.common}>Dashboard Graph</Block>
+							<Block layout horizontal style={styles.transparent}>
+								<Block flex style={Layout.extend(styles.common, {height: 100})}>Widget</Block>
+								<Block flex style={Layout.extend(styles.common, {height: 100})}>Widget</Block>
+								<Block flex style={Layout.extend(styles.common, {height: 100})}>Widget</Block>
+							</Block>
+							<Block flex style={styles.common}>Dashboard Content</Block>
+						</Block>
+					</Block>
+					<Block className="footer">Footer</Block>
+				</Block>
+			</div>
+		);
+  }
+}
+
 class App extends React.Component {
   render() {
     let styles = {
@@ -285,6 +339,7 @@ class App extends React.Component {
 				<AppJustified />
 				<AppSelfAligned />
 				<AppWrapped />
+				<AppNested />
 				<AppFooter />
       </Block>
     );

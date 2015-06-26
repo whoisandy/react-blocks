@@ -46,6 +46,9 @@ footer > p{
 a{
   color: blue;
 }
+h1{
+  font-size: 32px;
+}
 h1 > small{
   font-weight: 200;
 }
