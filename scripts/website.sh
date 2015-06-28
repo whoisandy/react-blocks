@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-./build.sh
+./scripts/build.sh
 
 webpack=node_modules/.bin/webpack
 
