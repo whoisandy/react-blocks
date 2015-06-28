@@ -6,7 +6,7 @@
   "scripts": {
     "test": "karma start",
     "build": "scripts/build.sh",
-    "release": "scripts/release.sh",
+    "website": "scripts/website.sh",
     "prepublish": "npm run build",
     "demo": "webpack-dev-server --config demo/webpack.demo.config.js --content-base demo --hot --inline"
   },

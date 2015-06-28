@@ -5,6 +5,8 @@ webpack=node_modules/.bin/webpack
 demo=demo
 website=website
 
+./build.sh
+
 rm -rf $website
 mkdir -p $website
 sed "s/<!-- styles -->/<link rel=\"stylesheet\" href=\"bundle.css\">/" $demo/index.html > $website/index.html
