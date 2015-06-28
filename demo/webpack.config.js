@@ -5,7 +5,7 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var config = {
-  entry: path.resolve(__dirname, 'demo.js'),
+  entry: path.resolve(__dirname, 'index.js'),
 
   output: {
     path: path.resolve(__dirname, '../website'),
