@@ -372,5 +372,4 @@ class App extends React.Component {
   }
 };
 
-const mount = document.getElementById('container');
-React.render(<App />, mount);
+export default App;
