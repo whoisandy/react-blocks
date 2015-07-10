@@ -31,13 +31,14 @@ describe('Block Spec: Basic', () => {
     expect(type).to.eql('ul');
   });
 
-  it('should have display flex and flex attrs', () => {
+  it('should have default layout and flex attrs', () => {
     let block = TestUtils.renderIntoDocument(<Block layout flex/>);
     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
     expect(elem.props.style.display).to.eql('flex');
     expect(elem.props.style.flexGrow).to.eql(1);
     expect(elem.props.style.flexShrink).to.eql(1);
     expect(elem.props.style.flexBasis).to.eql('auto');
+    expect(elem.props.style.flexWrap).to.eql('wrap');
   });
 
   it('should have flex none', () => {
@@ -163,19 +164,13 @@ describe('Block Spec: Align Self', () => {
   });
 });
 
-describe('Block Spec: Wrap', () => {
-  it('should have flexWrap wrap', () => {
-    let block = TestUtils.renderIntoDocument(<Block wrap/>);
-    let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
-    expect(elem.props.style.flexWrap).to.eql('wrap');
-  });
-
-  it('should have flexWrap wrap-reverse', () => {
-    let block = TestUtils.renderIntoDocument(<Block wrapReverse/>);
-    let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
-    expect(elem.props.style.flexWrap).to.eql('wrap-reverse');
-  });
-})
+// describe('Block Spec: Wrap', () => {
+//   it('should have default flexWrap wrap', () => {
+//     let block = TestUtils.renderIntoDocument(<Block layout/>);
+//     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
+//     expect(elem.props.style.flexWrap).to.eql('wrap');
+//   });
+// });
 
 describe('Block Spec: General', () => {
   it('should be centered along both axes', () => {

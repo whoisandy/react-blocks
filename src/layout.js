@@ -2,23 +2,28 @@
 
 import {fillin} from './utils';
 
-let layout, inline, flex, flexAuto, flexNone;
+let common, layout, inline, flex, flexAuto, flexNone;
 let horizontal, horizontalReverse, vertical, verticalReverse;
 let alignStart, alignCenter, alignEnd, alignStretch;
 let selfAlignStart, selfAlignCenter, selfAlignEnd, selfAlignStretch;
 let justifyStart, justifyCenter, justifyEnd, justifyBetween, justifyAround;
 let block, hidden, invisible;
 let relative, absolute;
-let wrap, wrapReverse;
 let centered;
 
-layout = {
-  display: 'flex'
+// Defaults
+common = {
+  boxSizing: 'border-box',
+  flexWrap: 'wrap'
 };
 
-inline = {
+layout = fillin(common, {
+  display: 'flex'
+});
+
+inline = fillin(common, {
   display: 'inline-flex'
-};
+});
 
 flex = {
   flexGrow: 1,
@@ -130,14 +135,6 @@ justifyAround = {
   justifyContent: 'space-around'
 };
 
-wrap = fillin(flexAuto, {
-  flexWrap: 'wrap'
-});
-
-wrapReverse = fillin(flexAuto, {
-  flexWrap: 'wrap-reverse'
-});
-
 centered = fillin(layout, alignCenter, justifyCenter);
 
 export default {
@@ -167,7 +164,5 @@ export default {
   justifyCenter: justifyCenter,
   justifyEnd: justifyEnd,
   justifyBetween: justifyBetween,
-  justifyAround: justifyAround,
-  wrap: wrap,
-  wrapReverse: wrapReverse
+  justifyAround: justifyAround
 };

@@ -76,17 +76,6 @@ const _resolveLayoutFlex = (props, style) => {
   return style;
 };
 
-// TODO: Think about making wrap a default value.
-const _resolveLayoutWrap = (props, style) => {
-  if(props.wrap){
-    style = Utils.fillin(style, Layout.wrap);
-  }
-  if(props.wrapReverse){
-    style = Utils.fillin(style, Layout.wrapReverse);
-  }
-  return style;
-};
-
 const _resolveLayoutAlign = (props, style) => {
   style = Utils.fillin(style, Layout.alignStretch);
   if(props.start) {
@@ -149,7 +138,6 @@ const _resolveLayoutStyles = (props, style) => {
   style = _resolveLayoutGeneral(props, style);
   style = _resolveLayoutPosition(props, style);
   style = _resolveLayoutFlex(props, style);
-  style = _resolveLayoutWrap(props, style);
   style = _resolveLayoutAlign(props, style);
   style = _resolveLayoutSelf(props, style);
   style = _resolveLayoutJustify(props, style);
@@ -158,7 +146,7 @@ const _resolveLayoutStyles = (props, style) => {
 };
 
 const _resolveMediaQueries = (component, style) => {
-  let styles = {...style};
+  let styles = style;
   Object.keys(styles)
   .filter(name => {
     return Utils.query(name);

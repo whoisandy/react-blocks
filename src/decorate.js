@@ -3,25 +3,21 @@
 import React from 'react';
 import Compose from './compose';
 
-export default function Decorate(Component) {
+export default (Component) => {
   class ComposedComponent extends Component {
-    _mediaQueryListenersByQuery = {};
-    constructor() {
-      super(...arguments);
-      this.state = this.state || {
-        _media: {}
-      };
+    _mediaQueryListenersByQuery: {};
+    state = {
+      _media: {}
+    };
+
+    constructor(props) {
+      super(props);
+      this.state = this.state || {};
     }
 
     componentDidMount() {
       if(super.componentDidMount) {
         super.componentDidMount();
-      }
-    }
-
-    componentDidReceiveProps() {
-      if(super.componentDidReceiveProps){
-        super.componentDidReceiveProps();
       }
     }
 
