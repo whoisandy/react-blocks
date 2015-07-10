@@ -33,10 +33,25 @@ class AppHeader extends React.Component {
 
 class AppFooter extends React.Component {
   render() {
+		let styles = {
+			left: {
+				textAlign: 'left'
+			},
+			right: {
+				textAlign: 'right'
+			},
+			p: {
+				xs: {
+					maxWidth: '100%',
+					flexBasis: '100%',
+					textAlign: 'center'
+				}
+			}
+		};
     return (
-			<Block el="footer" className="footer">
-				<p>Github page built using React and Blocks :)</p>
-				<p>Built with &hearts; &#8226; MIT &copy; <a href="http://whoisandie.com">whoisandie</a></p>
+			<Block el="footer" className="footer" layout wrap>
+				<Block el="p" flex style={[styles.p, styles.left]}>Github page built using React and Blocks :)</Block>
+				<Block el="p" flex style={[styles.p, styles.right]}>Built with &hearts; &#8226; MIT &copy; <a href="http://whoisandie.com">whoisandie</a></Block>
 			</Block>
 		);
   }
@@ -268,12 +283,13 @@ class AppSelfAligned extends React.Component {
   }
 }
 
+// Move this to layout part
 class AppWrapped extends React.Component {
   render() {
 		let codeWrap = "<Block layout horizontal wrap>\n  <Block flex>Alpha</Block>\n  <Block flex>Beta</Block>\n  <Block flex>Gamma</Block>\n  <Block flex>Delta</Block>\n</Block>";
 		let codeWrapRev = "<Block layout horizontal wrapReverse>\n  <Block flex>Alpha</Block>\n  <Block flex>Beta</Block>\n  <Block flex>Gamma</Block>\n  <Block flex>Delta</Block>\n</Block>";
 		let styles = {
-			wrapped: {
+			wrap: {
 				width: 200,
 				marginLeft: 'auto',
 				marginRight: 'auto'
@@ -287,7 +303,7 @@ class AppWrapped extends React.Component {
 				<pre>
 					<code>{codeWrap}</code>
 				</pre>
-				<Block className="demo" layout horizontal wrap style={styles.wrapped}>
+				<Block className="demo" layout style={styles.wrap}>
 					<Block flex>Alpha</Block>
 					<Block flex>Beta</Block>
 					<Block flex>Gamma</Block>
@@ -297,7 +313,7 @@ class AppWrapped extends React.Component {
 				<pre>
 					<code>{codeWrapRev}</code>
 				</pre>
-				<Block className="demo" layout horizontal wrapReverse style={styles.wrapped}>
+				<Block className="demo" layout style={styles.wrap}>
 					<Block flex>Alpha</Block>
 					<Block flex>Beta</Block>
 					<Block flex>Gamma</Block>
@@ -410,14 +426,14 @@ class App extends React.Component {
   render() {
     let styles = {
       app: {
-        width: 600,
+        width: 800,
         margin: '0 auto',
+				padding: 20,
 				md: {
-					width: 800
+					width: 600
 				},
 				xs: {
-					width: '100%',
-					padding: 20
+					width: '100%'
 				}
       }
     };
