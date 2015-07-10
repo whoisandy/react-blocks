@@ -31,7 +31,7 @@ var config = {
       {
         test: /\.js?$/,
         exclude: /node_modules/,
-        loader: 'react-hot!babel'
+        loader: 'react-hot!babel?stage=0'
       },
       {
         test: /\.css$/,

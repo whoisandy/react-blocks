@@ -1,17 +1,26 @@
 'use strict';
 
 import React from 'react';
-import Block from '../lib';
-import Layout from '../lib/layout';
+import Block from 'react-blocks';
 import './demo.css';
 
 class AppHeader extends React.Component {
 	render() {
+		let styles = {
+			small: {
+				fontSize: 28,
+				xs: {
+					fontSize: 20
+				}
+			}
+		}
 		return (
-			<Block className="header">
-				<header>
-					<h1>React Blocks<br/><small>Just the layout, no more, no less.</small></h1>
-				</header>
+			<Block el="header" className="header">
+				<h1>
+					React Blocks<br/>
+					<Block el="small" style={styles.small}>Just the layout, no more, no less.</Block>
+				</h1>
+
 				<section>
 					<p>React blocks uses a declarative approach to build complex layouts on top of CSS Flexbox. Flexbox properties are exposed as attributes on a higher-level react component.</p>
 					<p>Please note, it does <b>NOT</b> handle mising browser features. Please use <a href="http://modernizr.com/">Modernizr</a> with Polyfills to achieve that.</p>
@@ -25,16 +34,13 @@ class AppHeader extends React.Component {
 class AppFooter extends React.Component {
   render() {
     return (
-			<Block className="footer">
-				<footer>
-					<p>Github page built using React and Blocks :)</p>
-					<p>Built with &hearts; &#8226; MIT &copy; <a href="http://whoisandie.com">whoisandie</a></p>
-				</footer>
+			<Block el="footer" className="footer">
+				<p>Github page built using React and Blocks :)</p>
+				<p>Built with &hearts; &#8226; MIT &copy; <a href="http://whoisandie.com">whoisandie</a></p>
 			</Block>
 		);
   }
 }
-
 
 class AppLayoutHorizontal extends React.Component {
 	render() {
@@ -111,9 +117,9 @@ class AppLayoutFlexible extends React.Component {
 
 class AppAligned extends React.Component {
 	render() {
-		let codeStart = "<Block layout horizontal align=\"start\">\n  <Block>Start</Block>\n</Block>";
-		let codeCenter = "<Block layout horizontal align=\"center\">\n  <Block>Centered</Block>\n</Block>";
-		let codeEnd = "<Block layout horizontal align=\"end\">\n  <Block>End</Block>\n</Block>";
+		let codeStart = "<Block layout horizontal start>\n  <Block>Start</Block>\n</Block>";
+		let codeCenter = "<Block layout horizontal center>\n  <Block>Centered</Block>\n</Block>";
+		let codeEnd = "<Block layout horizontal end>\n  <Block>End</Block>\n</Block>";
 		let styles = {
 			vertical: {
 				height: 120
@@ -128,7 +134,7 @@ class AppAligned extends React.Component {
 				<pre>
 					<code>{codeStart}</code>
 				</pre>
-				<Block className="demo" layout horizontal align="start" style={styles.vertical}>
+				<Block className="demo" layout horizontal start style={styles.vertical}>
 					<Block>Start</Block>
 				</Block>
 
@@ -136,14 +142,14 @@ class AppAligned extends React.Component {
 				<pre>
 					<code>{codeCenter}</code>
 				</pre>
-				<Block className="demo" layout horizontal align="center" style={styles.vertical}>
+				<Block className="demo" layout horizontal center style={styles.vertical}>
 					<Block>Centered</Block>
 				</Block>
 
 				<pre>
 					<code>{codeEnd}</code>
 				</pre>
-				<Block className="demo" layout horizontal align="end" style={styles.vertical}>
+				<Block className="demo" layout horizontal end style={styles.vertical}>
 					<Block>End</Block>
 				</Block>
 			</div>
@@ -153,11 +159,11 @@ class AppAligned extends React.Component {
 
 class AppJustified extends React.Component {
 	render() {
-		let codeStart = "<Block layout horizontal justify=\"start\">\n  <Block>Start</Block>\n</Block>";
-		let codeCenter = "<Block layout horizontal justify=\"center\">\n  <Block>Centered</Block>\n</Block>";
-		let codeEnd = "<Block layout horizontal justify=\"end\">\n  <Block>End</Block>\n</Block>";
-		let codeAround = "<Block layout horizontal justify=\"around\">\n  <Block>End</Block>\n</Block>";
-		let codeBetween = "<Block layout horizontal justify=\"between\">\n  <Block>End</Block>\n</Block>";
+		let codeStart = "<Block layout horizontal justifyStart>\n  <Block>Start</Block>\n</Block>";
+		let codeCenter = "<Block layout horizontal justifyCenter>\n  <Block>Centered</Block>\n</Block>";
+		let codeEnd = "<Block layout horizontal justifyEnd>\n  <Block>End</Block>\n</Block>";
+		let codeAround = "<Block layout horizontal justifyAround>\n  <Block>End</Block>\n</Block>";
+		let codeBetween = "<Block layout horizontal justifyBetween>\n  <Block>End</Block>\n</Block>";
 		return (
 			<div className="justification">
 				<h4>Justification: Main-axis</h4>
@@ -166,7 +172,7 @@ class AppJustified extends React.Component {
 				<pre>
 					<code>{codeStart}</code>
 				</pre>
-				<Block className="demo" layout horizontal justify="start">
+				<Block className="demo" layout horizontal justifyStart>
 					<Block>Alpha</Block>
 					<Block>Beta</Block>
 					<Block>Gamma</Block>
@@ -175,7 +181,7 @@ class AppJustified extends React.Component {
 				<pre>
 					<code>{codeCenter}</code>
 				</pre>
-				<Block className="demo" layout horizontal justify="center">
+				<Block className="demo" layout horizontal justifyCenter>
 					<Block>Alpha</Block>
 					<Block>Beta</Block>
 					<Block>Gamma</Block>
@@ -184,7 +190,7 @@ class AppJustified extends React.Component {
 				<pre>
 					<code>{codeEnd}</code>
 				</pre>
-				<Block className="demo" layout horizontal justify="end">
+				<Block className="demo" layout horizontal justifyEnd>
 					<Block>Alpha</Block>
 					<Block>Beta</Block>
 					<Block>Gamma</Block>
@@ -193,7 +199,7 @@ class AppJustified extends React.Component {
 				<pre>
 					<code>{codeAround}</code>
 				</pre>
-				<Block className="demo" layout horizontal justify="around">
+				<Block className="demo" layout horizontal justifyAround>
 					<Block>Alpha</Block>
 					<Block>Beta</Block>
 					<Block>Gamma</Block>
@@ -202,7 +208,7 @@ class AppJustified extends React.Component {
 				<pre>
 					<code>{codeBetween}</code>
 				</pre>
-				<Block className="demo" layout horizontal justify="between">
+				<Block className="demo" layout horizontal justifyBetween>
 					<Block>Alpha</Block>
 					<Block>Beta</Block>
 					<Block>Gamma</Block>
@@ -237,7 +243,7 @@ class AppCentered extends React.Component {
 
 class AppSelfAligned extends React.Component {
   render() {
-		let code = "<Block layout horizontal>\n  <Block flex self=\"start\">Alpha</Block>\n  <Block flex self=\"center\">Beta</Block>\n  <Block flex self=\"end\">Gamma</Block>\n  <Block flex>Delta</Block>\n</Block>";
+		let code = "<Block layout horizontal>\n  <Block flex selfStart>Alpha</Block>\n  <Block flex selfCenter>Beta</Block>\n  <Block flex selfEnd>Gamma</Block>\n  <Block flex>Delta</Block>\n</Block>";
 		let styles = {
 			vertical: {
 				height: 120
@@ -252,12 +258,11 @@ class AppSelfAligned extends React.Component {
 					<code>{code}</code>
 				</pre>
 				<Block className="demo" layout horizontal style={styles.vertical}>
-					<Block flex self="start">Alpha</Block>
-					<Block flex self="center">Beta</Block>
-					<Block flex self="end">Gamma</Block>
+					<Block flex selfStart>Alpha</Block>
+					<Block flex selfCenter>Beta</Block>
+					<Block flex selfEnd>Gamma</Block>
 					<Block flex>Delta</Block>
 				</Block>
-
 			</div>
 		);
   }
@@ -265,7 +270,8 @@ class AppSelfAligned extends React.Component {
 
 class AppWrapped extends React.Component {
   render() {
-		let code = "<Block layout horizontal wrap>\n  <Block flex>Alpha</Block>\n  <Block flex>Beta</Block>\n  <Block flex>Gamma</Block>\n  <Block flex>Delta</Block>\n</Block>";
+		let codeWrap = "<Block layout horizontal wrap>\n  <Block flex>Alpha</Block>\n  <Block flex>Beta</Block>\n  <Block flex>Gamma</Block>\n  <Block flex>Delta</Block>\n</Block>";
+		let codeWrapRev = "<Block layout horizontal wrapReverse>\n  <Block flex>Alpha</Block>\n  <Block flex>Beta</Block>\n  <Block flex>Gamma</Block>\n  <Block flex>Delta</Block>\n</Block>";
 		let styles = {
 			wrapped: {
 				width: 200,
@@ -276,13 +282,22 @@ class AppWrapped extends React.Component {
     return (
 			<div className="wrapped">
 				<h4>Wrapping</h4>
-				<p>Wrapped layouts can be enabled with the wrap style.</p>
-
+				<p>Wrapped layouts can be enabled with the wrap style. To reverse the wrap style, use the wrapReverse attribute.</p>
 
 				<pre>
-					<code>{code}</code>
+					<code>{codeWrap}</code>
 				</pre>
 				<Block className="demo" layout horizontal wrap style={styles.wrapped}>
+					<Block flex>Alpha</Block>
+					<Block flex>Beta</Block>
+					<Block flex>Gamma</Block>
+					<Block flex>Delta</Block>
+				</Block>
+
+				<pre>
+					<code>{codeWrapRev}</code>
+				</pre>
+				<Block className="demo" layout horizontal wrapReverse style={styles.wrapped}>
 					<Block flex>Alpha</Block>
 					<Block flex>Beta</Block>
 					<Block flex>Gamma</Block>
@@ -296,50 +311,95 @@ class AppWrapped extends React.Component {
 class AppNested extends React.Component {
   render() {
 		let styles = {
-			nested: {
-				height: 400
+			transparent: {
+				margin: 0,
+				padding: 0,
+				background: 'transparent'
 			},
 
 			common: {
 				margin: 4,
 				padding: 12,
-				background: 'white'
+				background: 'white',
+
+				md: {
+					background: 'tomato',
+					color: 'white'
+				},
+
+				xs: {
+					background: 'palevioletred',
+					color: 'white'
+				}
 			},
 
-			transparent: {
-				margin: 0,
-				padding: 0,
-				background: 'transparent'
+			search: {
+				width: 200,
+				xs: {
+						display: 'none'
+				}
+			},
+
+			sidebar: {
+				maxWidth: 200,
+				flexBasis: 200,
+				md: {
+					maxWidth: '50%',
+					flexBasis: '50%'
+				},
+				xs: {
+						maxWidth: '100%',
+						flexBasis: '100%'
+				}
+			},
+
+			widget: {
+				height: 100,
+				md: {
+					height: 'auto'
+				}
+			},
+
+			footer: {
+				md: {
+					display: 'none'
+				}
 			}
 		};
+
 		return (
 			<div className="nested">
 				<h4>Nested Blocks (example of a complex layout)</h4>
-				<p>Blocks can further be nested. Below shown is an example of a complex layout built using blocks. Check out the source <a target="_blank" href="https://github.com/whoisandie/react-blocks/blob/master/demo/demo.js">here</a></p>
-				<Block className="demo" layout vertical style={styles.nested}>
-					<Block className="topbar" layout horizontal style={styles.transparent}>
-						<Block className="logo" style={styles.common}>Brand</Block>
-						<Block style={Layout.extend(styles.common, {width: 200})}>Searchbar</Block>
-						<Block className="nav" layout vertical flex style={styles.transparent}>
-							<Block self="end" style={styles.common}>Navigation</Block>
-						</Block>
-					</Block>
-					<Block className="main" layout horizontal flex style={styles.transparent}>
-						<Block className="sidebar" layout vertical style={Layout.extend(styles.transparent, {width: 200})}>
-							<Block className="categories" flex style={styles.common}>Categories</Block>
-							<Block className="settings" style={styles.common}>Settings</Block>
-						</Block>
-						<Block className="content" layout vertical flex style={styles.transparent}>
-							<Block style={styles.common}>Dashboard Graph</Block>
-							<Block layout horizontal style={styles.transparent}>
-								<Block flex style={Layout.extend(styles.common, {height: 100})}>Widget</Block>
-								<Block flex style={Layout.extend(styles.common, {height: 100})}>Widget</Block>
-								<Block flex style={Layout.extend(styles.common, {height: 100})}>Widget</Block>
+				<p>
+					Blocks can further be nested. Below shown is an example of a complex layout built using blocks. Check out the source
+					<a target="_blank" href="https://github.com/whoisandie/react-blocks/blob/master/demo/demo.js">here</a>
+				</p>
+				<Block className="demo" layout vertical wrap>
+					<Block layout wrap style={styles.transparent}>
+						<Block style={styles.common}>Brand</Block>
+						<Block style={[styles.common, styles.search]}>Searchbar</Block>
+						<Block el="nav" layout flex justifyEnd style={styles.transparent}>
+							<Block layout style={styles.common}>
+								Navigation
 							</Block>
-							<Block flex style={styles.common}>Dashboard Content</Block>
 						</Block>
 					</Block>
-					<Block className="footer">Footer</Block>
+					<Block layout wrap flex style={styles.transparent}>
+						<Block layout vertical wrap style={styles.sidebar}>
+							<Block flex style={styles.common}>Categories</Block>
+							<Block style={styles.common}>Settings</Block>
+						</Block>
+						<Block layout vertical flex style={styles.transparent}>
+							<Block style={styles.common}>Dashboard Graph</Block>
+							<Block layout wrap style={[styles.transparent, styles.widget]}>
+								<Block flex style={styles.common}>Widget</Block>
+								<Block flex style={styles.common}>Widget</Block>
+								<Block flex style={styles.common}>Widget</Block>
+							</Block>
+							<Block flex style={[styles.common, styles.content]}>Dashboard Content</Block>
+						</Block>
+					</Block>
+					<Block style={[styles.common, styles.footer]}>Footer</Block>
 				</Block>
 			</div>
 		);
@@ -350,13 +410,20 @@ class App extends React.Component {
   render() {
     let styles = {
       app: {
-        maxWidth: 600,
-        margin: '0 auto'
+        width: 600,
+        margin: '0 auto',
+				md: {
+					width: 800
+				},
+				xs: {
+					width: '100%',
+					padding: 20
+				}
       }
     };
 
     return (
-      <Block className="app" style={styles.app}>
+      <Block style={styles.app}>
 				<AppHeader />
 				<AppLayoutHorizontal />
 				<AppLayoutFlexible />

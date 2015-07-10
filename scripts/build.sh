@@ -6,7 +6,7 @@ build_dir=lib
 
 rm -rf $build_dir
 
-$babel ./src -d $build_dir --ignore "tests"
+$babel ./src --stage 0 -d $build_dir --ignore "tests"
 
 NODE_ENV=production $webpack src/index.js $build_dir/umd/ReactBlocks.js
 NODE_ENV=production $webpack -p src/index.js $build_dir/umd/ReactBlocks.min.js

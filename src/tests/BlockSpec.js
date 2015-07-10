@@ -81,25 +81,25 @@ describe('Block Spec: Direction', () => {
 
 describe('Block Spec: Align Items', () => {
   it('should have alignItems to flex-start', () => {
-    let block = TestUtils.renderIntoDocument(<Block align="start" />);
+    let block = TestUtils.renderIntoDocument(<Block start />);
     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
     expect(elem.props.style.alignItems).to.eql('flex-start');
   });
 
   it('should have alignItems to center', () => {
-    let block = TestUtils.renderIntoDocument(<Block align="center" />);
+    let block = TestUtils.renderIntoDocument(<Block center />);
     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
     expect(elem.props.style.alignItems).to.eql('center');
   });
 
   it('should have alignItems to flex-end', () => {
-    let block = TestUtils.renderIntoDocument(<Block align="end" />);
+    let block = TestUtils.renderIntoDocument(<Block end />);
     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
     expect(elem.props.style.alignItems).to.eql('flex-end');
   });
 
   it('should have alignItems to stretch', () => {
-    let block = TestUtils.renderIntoDocument(<Block align="stretch" />);
+    let block = TestUtils.renderIntoDocument(<Block stretch />);
     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
     expect(elem.props.style.alignItems).to.eql('stretch');
   });
@@ -107,31 +107,31 @@ describe('Block Spec: Align Items', () => {
 
 describe('Block Spec: Justify Content', () => {
   it('should have justifyContent to flex-start', () => {
-    let block = TestUtils.renderIntoDocument(<Block justify="start" />);
+    let block = TestUtils.renderIntoDocument(<Block justifyStart />);
     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
     expect(elem.props.style.justifyContent).to.eql('flex-start');
   });
 
   it('should have justifyContent to center', () => {
-    let block = TestUtils.renderIntoDocument(<Block justify="center" />);
+    let block = TestUtils.renderIntoDocument(<Block justifyCenter />);
     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
     expect(elem.props.style.justifyContent).to.eql('center');
   });
 
   it('should have justifyContent to flex-end', () => {
-    let block = TestUtils.renderIntoDocument(<Block justify="end" />);
+    let block = TestUtils.renderIntoDocument(<Block justifyEnd />);
     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
     expect(elem.props.style.justifyContent).to.eql('flex-end');
   });
 
   it('should have justifyContent to between', () => {
-    let block = TestUtils.renderIntoDocument(<Block justify="between" />);
+    let block = TestUtils.renderIntoDocument(<Block justifyBetween />);
     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
     expect(elem.props.style.justifyContent).to.eql('space-between');
   });
 
   it('should have justifyContent to around', () => {
-    let block = TestUtils.renderIntoDocument(<Block justify="around" />);
+    let block = TestUtils.renderIntoDocument(<Block justifyAround />);
     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
     expect(elem.props.style.justifyContent).to.eql('space-around');
   });
@@ -139,25 +139,25 @@ describe('Block Spec: Justify Content', () => {
 
 describe('Block Spec: Align Self', () => {
   it('should have alignSelf to flex-start', () => {
-    let block = TestUtils.renderIntoDocument(<Block self="start" />);
+    let block = TestUtils.renderIntoDocument(<Block selfStart />);
     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
     expect(elem.props.style.alignSelf).to.eql('flex-start');
   });
 
   it('should have alignSelf to center', () => {
-    let block = TestUtils.renderIntoDocument(<Block self="center" />);
+    let block = TestUtils.renderIntoDocument(<Block selfCenter />);
     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
     expect(elem.props.style.alignSelf).to.eql('center');
   });
 
   it('should have alignSelf to flex-end', () => {
-    let block = TestUtils.renderIntoDocument(<Block self="end" />);
+    let block = TestUtils.renderIntoDocument(<Block selfEnd />);
     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
     expect(elem.props.style.alignSelf).to.eql('flex-end');
   });
 
   it('should have alignSelf to stretch', () => {
-    let block = TestUtils.renderIntoDocument(<Block self="stretch" />);
+    let block = TestUtils.renderIntoDocument(<Block selfStretch />);
     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
     expect(elem.props.style.alignSelf).to.eql('stretch');
   });
@@ -171,7 +171,7 @@ describe('Block Spec: Wrap', () => {
   });
 
   it('should have flexWrap wrap-reverse', () => {
-    let block = TestUtils.renderIntoDocument(<Block wrap reverse/>);
+    let block = TestUtils.renderIntoDocument(<Block wrapReverse/>);
     let elem = TestUtils.findRenderedDOMComponentWithTag(block, 'div');
     expect(elem.props.style.flexWrap).to.eql('wrap-reverse');
   });

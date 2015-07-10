@@ -30,14 +30,14 @@ body {
 }
 
 
-header, footer {
-  text-align: center;
-}
 header{
   margin-bottom: 40px;
 }
 footer{
   margin: 40px 0;
+}
+header > h1, footer > p{
+  text-align: center;
 }
 footer > p{
   margin: 0;
@@ -65,10 +65,4 @@ pre{
 }
 pre > code{
   font-family: "Source Code Pro";
-}
-
-@media only screen and (min-device-width: 375px) {
-  body{
-    padding: 0 20px;
-  }
 }

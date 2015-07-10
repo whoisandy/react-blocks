@@ -1,17 +1,8 @@
 'use strict';
 
-const extend = (...args) => {
-  let newObj = {};
-  for(let i in args){
-    let obj = args[i];
-    for(let key in obj){
-      newObj[key] = obj[key];
-    }
-  }
-  return newObj;
-};
+import {fillin} from './utils';
 
-let layout, inline, flexAuto, flexNone;
+let layout, inline, flex, flexAuto, flexNone;
 let horizontal, horizontalReverse, vertical, verticalReverse;
 let alignStart, alignCenter, alignEnd, alignStretch;
 let selfAlignStart, selfAlignCenter, selfAlignEnd, selfAlignStretch;
@@ -29,11 +20,17 @@ inline = {
   display: 'inline-flex'
 };
 
-flexAuto = {
+flex = {
+  flexGrow: 1,
+  flexShrink: 1,
+  flexBasis: '0%'
+};
+
+flexAuto = fillin(flex, {
   flexGrow: 1,
   flexShrink: 1,
   flexBasis: 'auto'
-};
+});
 
 flexNone = {
   flexGrow: 0,
@@ -65,19 +62,19 @@ absolute = {
   left: 0
 };
 
-horizontal = extend(layout, {
+horizontal = fillin(layout, {
   flexDirection: 'row'
 });
 
-horizontalReverse = extend(layout, {
+horizontalReverse = fillin(layout, {
   flexDirection: 'row-reverse'
 });
 
-vertical = extend(layout, {
+vertical = fillin(layout, {
   flexDirection: 'column'
 });
 
-verticalReverse = extend(layout, {
+verticalReverse = fillin(layout, {
   flexDirection: 'column-reverse'
 });
 
@@ -133,21 +130,21 @@ justifyAround = {
   justifyContent: 'space-around'
 };
 
-wrap = {
+wrap = fillin(flexAuto, {
   flexWrap: 'wrap'
-};
+});
 
-wrapReverse = {
+wrapReverse = fillin(flexAuto, {
   flexWrap: 'wrap-reverse'
-};
+});
 
-centered = extend(layout, alignCenter, justifyCenter);
+centered = fillin(layout, alignCenter, justifyCenter);
 
 export default {
-  extend: extend,
   block: block,
   hidden: hidden,
   invisible: invisible,
+  centered: centered,
   relative: relative,
   absolute: absolute,
   layout: layout,
@@ -172,6 +169,5 @@ export default {
   justifyBetween: justifyBetween,
   justifyAround: justifyAround,
   wrap: wrap,
-  wrapReverse: wrapReverse,
-  centered: centered
+  wrapReverse: wrapReverse
 };
