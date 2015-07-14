@@ -1,13 +1,13 @@
 # React Blocks [![NPM Package][npm_img]][npm_site] [![Travis Status][trav_img]][trav_site]
 
-A higher-level react component to manage complex layouts using flexbox. Everything is just another block. Heavily inspired by [Polymer layout.html](polymer), [LayoutJS](layoutjs) and the [CSSinJS](cssinjs) pattern.
+A higher-level react component to manage complex layouts using flexbox. Everything is just another block. Heavily inspired by [Polymer layout.html][polymer], [LayoutJS][layoutjs] and the [CSSinJS][cssinjs] pattern.
 
 > Just pure layout, No more, No less.
 
 ## About
-React blocks uses a declarative approach to build complex layouts on top of [CSS Flexbox](flexbox). Flexbox properties are exposed as attributes on a higher-level react component.
+React blocks uses a declarative approach to build complex layouts on top of [CSS Flexbox][flexbox]. Flexbox properties are exposed as attributes on a higher-level react component.
 
-Please note, it does **NOT** handle missing browser features. Please use [Modernizr](modernizr) with Polyfills to achieve that.
+Please note, it does **NOT** handle missing browser features. Please use [Modernizr][modernizr] with Polyfills to achieve that.
 
 ## Usage
 
@@ -173,7 +173,7 @@ Clone the repository, install the dependencies & type `npm start` to start a loc
 The repository comes with a set of tests, which serve also as examples. To run the tests, type `npm test` once you install the dependencies. All tests are written using mocha & chai.
 
 ## License
-MIT &copy; 2015 [whoisandie](whiosandie)
+MIT &copy; 2015 [whoisandie][whoisandie]
 
 [polymer]: https://www.polymer-project.org/0.5/docs/polymer/layout-attrs.html
 [layoutjs]: https://github.com/basarat/layoutjs
