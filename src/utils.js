@@ -17,10 +17,6 @@ function _isKind(val, kind) {
   return _kindOf(val) === kind;
 }
 
-function _isUndefined(val) {
-  return _isKind(val, 'Undefined');
-}
-
 function _isObject(val) {
     return _isKind(val, 'Object');
 }
@@ -28,10 +24,6 @@ function _isObject(val) {
 function _isArray(val) {
     return _isKind(val, 'Array');
 }
-
-function _hasOwn(obj, property) {
-  return Object.hasOwnproperty.call(obj, prop);
-};
 
 function _fillin(...args) {
  let newObj = {};
