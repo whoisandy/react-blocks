@@ -6,9 +6,9 @@ import Utils from './utils';
 
 const _mediaQueryListByQueryString = {};
 const _predefinedMediaQueryString = {
-  xs: 'screen and (min-width: 375px) and (max-width: 767px)',
-  md: 'screen and (min-width: 768px) and (max-width: 1023px)',
-  lg: 'screen and (min-width: 1024px) and (max-width: 1200px)'
+  xs: 'screen and (min-width: 375px)',
+  md: 'screen and (min-width: 768px)',
+  lg: 'screen and (min-width: 1024px)'
 };
 
 function _onMediaQueryChange(component, query, mediaQueryList) {

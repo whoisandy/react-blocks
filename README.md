@@ -5,7 +5,7 @@ A higher-level react component to manage complex layouts using flexbox. Everythi
 > Just pure layout, No more, No less.
 
 ## About
-React blocks uses a declarative approach to build complex layouts on top of [CSS Flexbox][flexbox]. Flexbox properties are exposed as attributes on a higher-level react component.
+React blocks uses a *declarative* approach to build complex layouts on top of [CSS Flexbox][flexbox]. Flexbox properties are exposed as attributes on a higher-level react component. Supports media-queries via predefined *mobile-first* queries. Further custom media queries can be specified in a styles object.
 
 Please note, it does **NOT** handle missing browser features. Please use [Modernizr][modernizr] with Polyfills to achieve that.
 
@@ -31,13 +31,13 @@ var Block = require('react-blocks');
 There's also a umd version available at `lib/umd`. The component is available on `window.ReactBlocks`.
 
 ### Layout (Horizontal, Vertical, Reverse, Wrap)
-A block is just a block level div element by default. You can make it a flex container by adding a `layout` attribute. Further to specify a direction, add `horizontal` or `vertical` attributes for row or column respectively. However the default direction would be set to vertical if nothing is specified.
+A block is just a block level div element by default. You can make it a flex container by adding a `layout` attribute. Further to specify a direction, add `horizontal` or `vertical` attributes for row or column respectively. However the default direction would be set to vertical if nothing is specified. The horizontal attribute is optional though, a block container has its flexDirection set to `horizontal` by default.
 
 ```js
 let App = React.createClass({
   render() {
     return (
-      <Block layout horizontal>
+      <Block layout>
         <div>Alpha</div>
         <div>Beta</div>
       </Block>
@@ -46,7 +46,7 @@ let App = React.createClass({
 });
 ```
 
-The direction of a block layout can be reversed by adding a `reverse` attribute. Also to make a flex-item stretch its width use the `flex` attribute on a flex-item. The `wrap` attribute wraps all flex-items inside a flex-container.
+The direction of a block layout can be reversed by adding a `reverse` attribute. Also to make a flex-item stretch its width use the `flex` attribute on a flex-item. Also all flex-items of a block container are wrapped by default.
 
 ```js
 let Reverse = React.createClass({
@@ -58,7 +58,7 @@ let Reverse = React.createClass({
     };
 
     return (
-      <Block layout vertical reverse wrap style={styles.app}>
+      <Block layout vertical reverse style={styles.app}>
         <div>Alpha</div>
         <div flex>Beta</div>
       </Block>
@@ -69,7 +69,7 @@ let Reverse = React.createClass({
 
 ### Align, Self-Align & Justify
 
-By default flex-items *stretch* to fit the cross-axis and are *start* justified. The `align` and `justify` attributes are used to align and justify flex-items. Please note *align* & *justify* attributes have to be declared on a parent block.
+By default flex-items *stretch* to fit the cross-axis and are *start* justified. The `align` and `justify*` attributes are used to align and justify flex-items. Please note *align* & *justify* attributes have to be declared on a parent container and has to be a `Block` element.
 
 ```js
 let AlignedJustified = React.createClass({
@@ -81,7 +81,7 @@ let AlignedJustified = React.createClass({
     };
 
     return (
-      <Block layout horizontal align="center" justify="end" style={styles.app}>
+      <Block layout center justifyEnd style={styles.app}>
         <Block>Alpha</Block>
         <Block>Beta</Block>
       </Block>
@@ -102,7 +102,7 @@ let SelfAligned = React.createClass({
     };
 
     return (
-      <Block layout horizontal align="center" justify="end" style={styles.app}>
+      <Block layout center justifyEnd style={styles.app}>
         <Block self="start">Alpha</Block>
         <Block self="end">Beta</Block>
       </Block>
@@ -123,7 +123,7 @@ let Centered = React.createClass({
     };
 
     return (
-      <Block layout horizontal centered style={styles.app}>
+      <Block layout centered style={styles.app}>
         <div>Centered</div>
       </Block>
     );
@@ -138,12 +138,12 @@ Blocks can further be nested. A block could contain multiple blocks as well. Use
 let Nested = React.createClass({
   render() {
     return(
-      <Block layout horizontal>
+      <Block layout>
         <Block className="sidebar" layout vertical>
           <Block>Alpha</Block>
           <Block>Beta</Block>
         </Block>
-        <Block className="content" layout horizontal reverse>
+        <Block className="content" layout reverse>
           <Block>Gamma</Block>
           <div>Delta</div>
           <a href="#">Theta</a>

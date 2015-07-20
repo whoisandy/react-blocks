@@ -1,6 +1,6 @@
 {
   "name": "react-blocks",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "A higher-level react component to manage complex layouts using flexbox.",
   "main": "lib/index",
   "scripts": {
@@ -30,6 +30,7 @@
     "chai": "^3.0.0",
     "css-loader": "^0.14.5",
     "es5-shim": "^4.1.6",
+    "highlight.js": "^8.6.0",
     "karma": "^0.12.36",
     "karma-chai": "^0.1.0",
     "karma-chai-plugins": "^0.6.0",
@@ -42,6 +43,7 @@
     "mocha": "^2.2.5",
     "node-libs-browser": "^0.5.2",
     "phantomjs": "^1.9.17",
+    "react-highlight": "^0.5.0",
     "react-hot-loader": "^1.2.7",
     "style-loader": "^0.12.3",
     "webpack": "^1.9.11",

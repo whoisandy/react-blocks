@@ -27,8 +27,6 @@ Block.PropTypes = {
   vertical: React.PropTypes.bool,
   horizontal: React.PropTypes.bool,
   reverse: React.PropTypes.bool,
-  wrap: React.PropTypes.bool,
-  wrapReverse: React.PropTypes.bool,
   start: React.PropTypes.bool,
   center: React.PropTypes.bool,
   end: React.PropTypes.bool,
