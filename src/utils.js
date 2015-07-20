@@ -52,9 +52,8 @@ function _mixin(...args) {
       return;
     }
     for(let key in arg) {
-      if(newObj[key]){
-        if(_isObject(newObj[key]))
-          newObj[key] = _mixin([newObj[key], arg[key]]);
+      if(newObj[key] && _isObject(newObj[key])){
+        newObj[key] = _mixin([newObj[key], arg[key]]);
       } else {
         newObj[key] = arg[key];
       }

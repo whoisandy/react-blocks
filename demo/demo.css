@@ -7,62 +7,34 @@
 body {
   margin: 0;
   padding: 0;
+  background: 'whitesmoke';
   font-family: "Roboto";
   font-weight: 400;
   font-size: 14px;
 }
 
-#container {
-  margin: 0;
-  padding: 0;
-}
-
-.demo {
-  margin: 20px 0;
-  padding: 4px;
-  background: peachpuff;
-}
-
-.demo > div {
-  margin: 4px;
-  padding: 12px;
-  background: white;
-}
-
-
-header{
-  margin-bottom: 40px;
-}
-footer{
-  margin: 40px 0;
-}
-header > h1, footer > p{
-  text-align: center;
-}
-footer > p{
-  margin: 0;
-  font-size: 12px;
-}
 a{
   color: blue;
-}
-h1{
-  font-size: 32px;
-}
-h1 > small{
-  font-weight: 200;
 }
 h4{
   margin: 20px 0 0 0;
   font-weight: 500;
   font-size: 18px;
 }
-pre{
-  margin: 0;
-  padding: 8px 12px;
-  background: whitesmoke;
-  overflow: scroll;
-}
 pre > code{
-  font-family: "Source Code Pro";
+  padding: 10px !important;
+  border-radius: 4px;
+  font-family: 'Consolas', 'Liberation Mono', 'Menlo', Courier, monospace;
+}
+
+.demo {
+  margin: 20px 0;
+  padding: 4px;
+  background: whitesmoke;
+}
+
+.demo > div {
+  margin: 4px;
+  padding: 12px;
+  background: white;
 }
