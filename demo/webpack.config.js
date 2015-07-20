@@ -14,6 +14,10 @@ var config = {
 
   resolve: {
     extensions: ['', '.js'],
+    alias: {
+      'react-blocks/lib': process.cwd() + '/src',
+      'react-blocks$': process.cwd() + '/src'
+    }
   },
 
   module: {
