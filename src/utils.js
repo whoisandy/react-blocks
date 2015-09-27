@@ -55,12 +55,7 @@ function _mixin(...args) {
   return newObj;
 }
 
-function _query(key) {
-  return key[0] === '@' || key === 'xs' || key === 'md' || key === 'lg';
-};
-
 export default {
   fillin: _fillin,
-  mixin: _mixin,
-  query: _query
+  mixin: _mixin
 };
