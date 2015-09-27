@@ -4,17 +4,14 @@
   "description": "A higher-level react component to manage complex layouts using flexbox.",
   "main": "lib/index",
   "scripts": {
-    "test": "karma start",
-    "build": "scripts/build.sh",
-    "website": "scripts/website.sh",
-    "prepublish": "npm run build",
-    "demo": "webpack-dev-server --config demo/webpack.demo.config.js --content-base demo --hot --inline"
+    "start": "node server.js",
+    "test": "karma start"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/whoisandie/react-blocks.git"
   },
-  "author": "Bhargav Anand",
+  "author": "whoisandie",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/whoisandie/react-blocks/issues"
