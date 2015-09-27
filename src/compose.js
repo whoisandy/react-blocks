@@ -4,29 +4,6 @@ import React from 'react';
 import Layout from './layout';
 import Utils from './utils';
 
-const _mediaQueryListByQueryString = {};
-const _predefinedMediaQueryString = {
-  xs: 'screen and (min-width: 375px)',
-  md: 'screen and (min-width: 768px)',
-  lg: 'screen and (min-width: 1024px)'
-};
-
-function _onMediaQueryChange(component, query, mediaQueryList) {
-  let media = {};
-  media[query] = mediaQueryList.matches;
-  _setStyleState(component, query, media);
-}
-
-function _setStyleState(component, key, newState) {
-  let existing = component.state && component.state._media || {};
-  let state = { _media: Utils.fillin({}, existing) };
-  state._media[key] = state._media[key] || {};
-  Utils.fillin(state._media[key], newState);
-  component.setState({
-    _media: state._media
-  });
-}
-
 const _resolveLayoutGeneral = (props, style) => {
   if(props.block){
     style = Utils.fillin(style, Layout.block);
@@ -134,7 +111,17 @@ const _resolveLayoutJustify = (props, style) => {
   return style;
 };
 
-const _resolveLayoutStyles = (props, style) => {
+export default function Compose(component, rendered){
+  let props = rendered.props;
+  let style = props.style;
+  let children = props.children;
+
+  let newProps = {};
+
+  if(Array.isArray(style)) {
+    style = Utils.mixin(style);
+  }
+
   style = _resolveLayoutGeneral(props, style);
   style = _resolveLayoutPosition(props, style);
   style = _resolveLayoutFlex(props, style);
@@ -142,64 +129,7 @@ const _resolveLayoutStyles = (props, style) => {
   style = _resolveLayoutSelf(props, style);
   style = _resolveLayoutJustify(props, style);
 
-  return style;
-};
-
-const _resolveMediaQueries = (component, style) => {
-  let styles = style;
-  Object.keys(styles)
-  .filter(name => {
-    return Utils.query(name);
-  })
-  .map(query => {
-    let mediaQueryStyles = styles[query];
-    query = query[0] === '@' ? query.replace('@media ', '') : _predefinedMediaQueryString[query];
-    let mql = _mediaQueryListByQueryString[query];
-    if (!mql) {
-      _mediaQueryListByQueryString[query] = mql = window.matchMedia(query);
-    }
-
-    if (!component._mediaQueryListenersByQuery) {
-      component._mediaQueryListenersByQuery = {};
-    }
-
-    if (!component._mediaQueryListenersByQuery[query]) {
-      let listener = _onMediaQueryChange.bind(null, component, query);
-      mql.addListener(listener);
-      component._mediaQueryListenersByQuery[query] = {
-        remove() { mql.removeListener(listener) }
-      };
-    }
-
-    if (mql.matches) {
-      styles = Utils.fillin(styles, mediaQueryStyles);
-    }
-  });
-
-  return styles;
-};
-
-export default function Compose(component, rendered){
-  let props = rendered.props;
-  let style = props.style;
-  let children = props.children;
-
-  let newStyle = {}, newProps = {};
-
-  if(Array.isArray(style)) {
-    style = Utils.mixin(style);
-  }
-
-  style = _resolveLayoutStyles(props, style);
-  style = _resolveMediaQueries(component, style);
-
-  Object.keys(style).forEach(key => {
-    if (!Utils.query(key)) {
-      newStyle[key] = style[key];
-    }
-  });
-
   // Prefix vendors here
-  newProps = Utils.fillin(newProps, {style: newStyle});
+  newProps = Utils.fillin(newProps, {style: style});
   return React.cloneElement(rendered, newProps, children);
 }
