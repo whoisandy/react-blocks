@@ -3,6 +3,8 @@
 import React from 'react';
 import Highlight from 'react-highlight';
 import Block from 'react-blocks';
+import MediaQuery from 'react-responsive';
+
 import './github.css';
 import './demo.css';
 
@@ -15,16 +17,6 @@ class AppHeader extends React.Component {
 			h1: {
 				fontSize: 32,
 				textAlign: 'center'
-			},
-			small: {
-				fontSize: 20,
-				fontWeight: 200,
-				md: {
-					fontSize: 28
-				},
-				lg: {
-					fontSize: 28
-				}
 			}
 		};
 
@@ -36,7 +28,7 @@ class AppHeader extends React.Component {
 				</h1>
 
 				<section>
-					<p>React blocks uses a <i>declarative approach</i> to build complex layouts on top of CSS Flexbox. Flexbox properties are exposed as attributes on a higher-level react component. Supports media-queries via predefined <i>mobile-first</i> queries. Further custom media queries can be specified in a styles object. </p>
+					<p>React blocks uses a <i>declarative approach</i> to build complex layouts on top of CSS Flexbox. Flexbox properties are exposed as attributes on a higher-level react component.</p>
 					<p>Please note, it does <b>NOT</b> handle mising browser features. Please use <a href="http://modernizr.com/">Modernizr</a> with Polyfills to achieve that.</p>
 				</section>
 				<p><a href="https://github.com/whoisandie/react-blocks">View on Github</a></p>
@@ -433,53 +425,16 @@ class AppNested extends React.Component {
 			common: {
 				margin: 4,
 				padding: 12,
-				background: 'firebrick',
-				color: 'white',
-
-				md: {
-					background: 'tomato',
-					color: 'white'
-				},
-
-				lg: {
-					background: 'white',
-					color: 'black'
-				}
+				background: 'white',
+				color: 'black'
 			},
 
 			search: {
-				width: 200,
-				display: 'none',
-				md: {
-					display: 'block'
-				},
-				lg: {
-					display: 'block'
-				}
-			},
-
-			sidebar: {
-				md: {
-					maxWidth: '50%',
-					flexBasis: '50%'
-				},
-				lg: {
-					maxWidth: 200,
-					flexBasis: 200
-				}
+				width: 200
 			},
 
 			widget: {
-				height: 100,
-				md: {
-					height: 'auto'
-				}
-			},
-
-			footer: {
-				md: {
-					display: 'none'
-				}
+				height: 100
 			}
 		};
 
@@ -492,7 +447,9 @@ class AppNested extends React.Component {
 				<Block className="demo" layout vertical wrap>
 					<Block layout wrap style={styles.transparent}>
 						<Block style={styles.common}>Brand</Block>
-						<Block style={[styles.common, styles.search]}>Searchbar</Block>
+						<MediaQuery MediaQuery query='(screen and min-device-width: 768px)'>
+							<Block style={[styles.common, styles.search]}>Searchbar</Block>
+						</MediaQuery>
 						<Block el="nav" layout flex justifyEnd style={styles.transparent}>
 							<Block layout style={styles.common}>
 								Navigation
@@ -500,7 +457,7 @@ class AppNested extends React.Component {
 						</Block>
 					</Block>
 					<Block layout wrap flex style={styles.transparent}>
-						<Block layout vertical wrap style={styles.sidebar}>
+						<Block layout vertical wrap>
 							<Block flex style={styles.common}>Categories</Block>
 							<Block style={styles.common}>Settings</Block>
 						</Block>
@@ -514,7 +471,9 @@ class AppNested extends React.Component {
 							<Block flex style={[styles.common, styles.content]}>Dashboard Content</Block>
 						</Block>
 					</Block>
-					<Block style={[styles.common, styles.footer]}>Footer</Block>
+					<MediaQuery MediaQuery query='(screen and max-device-width: 768px)'>
+						<Block style={styles.common}>Footer</Block>
+					</MediaQuery>
 				</Block>
 			</div>
 		);
@@ -525,28 +484,21 @@ class App extends React.Component {
   render() {
     let styles = {
       app: {
-        margin: '0 auto',
-				padding: 20,
-				md: {
-					width: 600
-				},
-				lg: {
-					width: 800
-				}
+		padding: 20
       }
     };
 
     return (
       <Block style={styles.app}>
-				<AppHeader />
-				<AppLayoutHorizontal />
-				<AppLayoutFlexible />
-				<AppAligned />
-				<AppJustified />
-				<AppCentered />
-				<AppSelfAligned />
-				<AppNested />
-				<AppFooter />
+			<AppHeader />
+			<AppLayoutHorizontal />
+			<AppLayoutFlexible />
+			<AppAligned />
+			<AppJustified />
+			<AppCentered />
+			<AppSelfAligned />
+			<AppNested />
+			<AppFooter />
       </Block>
     );
   }
