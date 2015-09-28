@@ -1,10 +1,9 @@
-'use strict';
+import './github.less';
+import './demo.less';
 
 import React from 'react';
 import Highlight from 'react-highlight';
 import Block from 'react-blocks';
-import './github.css';
-import './demo.css';
 
 class AppHeader extends React.Component {
 	render() {
@@ -119,11 +118,11 @@ class AppLayoutHorizontal extends React.Component {
 
 
 				<p>By default, every block container has flexWrap property set to wrap.</p>
-				<Highlight className='html'>
+				<Highlight className="html">
 					{this.code('wrap')}
 				</Highlight>
 				<p>Further the styles object would look as shown below.</p>
-				<Highlight className='js'>
+				<Highlight className="js">
 					{`let styles = {\n  wrap: {\n    width: 200,\n    marginLeft: 'auto',\n    marginRight: 'auto'\n  }\n}`}
 				</Highlight>
 				<Block className="demo" layout style={styles.wrap}>
@@ -372,7 +371,7 @@ class AppCentered extends React.Component {
 				<h4>Centered (Cross-axis & Main-axis)</h4>
 				<p>Further more, an item in a flex-container can be aligned and justified using the centered attribute.</p>
 
-				<Highlight className='html'>
+				<Highlight className="html">
 					{this.code()}
 				</Highlight>
 				<Block className="demo" layout horizontal centered style={styles.vertical}>
@@ -401,7 +400,7 @@ class AppSelfAligned extends React.Component {
 				<h4>Self Alignment</h4>
 				<p>Alignment can also be set per-child (instead of using the layout containers rules). By default, self alignment is set to stretch.</p>
 
-				<Highlight className='html'>
+				<Highlight className="html">
 					{this.code()}
 				</Highlight>
 				<Block className="demo" layout horizontal style={styles.vertical}>
