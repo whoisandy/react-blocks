@@ -1,10 +1,17 @@
 #!/bin/bash -e
 
-website=website
+clean() {
+	rm -rf deploy
+}
 
-git add -A $website
-git commit -m 'deploying website'
-git subtree push --prefix $website origin gh-pages
-rm -rf $website
+webpack=node_modules/.bin/webpack
+pages=node_modules/.bin/gh-pages
 
-echo "Deployed website: http://whoisandie.github.io/react-blocks"
+clean
+NODE_ENV=production $webpack --quiet
+NODE_ENV=production $pages -d deploy
+rm -rf lib
+clean
+
+printf '\nDeploy: Demo deployed to gh-pages\n'
+
