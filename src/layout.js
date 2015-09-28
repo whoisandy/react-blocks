@@ -1,5 +1,3 @@
-'use strict';
-
 import {fillin} from './utils';
 
 let common, layout, inline, flex, flexAuto, flexNone;

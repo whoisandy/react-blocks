@@ -1,5 +1,3 @@
-'use strict';
-
 const _kind = /^\[object (.*)\]$/;
 const _toString = Object.prototype.toString;
 

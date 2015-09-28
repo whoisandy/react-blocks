@@ -1,5 +1,3 @@
-'use strict';
-
 describe('Sanity test', function () {
   it('should evaluate true to be ok', function () {
     expect(true).to.be.ok;

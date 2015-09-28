@@ -1,6 +1,3 @@
-'use strict';
-
-import React from 'react';
 import Compose from './compose';
 
 export default (Component) => {
@@ -33,11 +30,8 @@ export default (Component) => {
       }
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-      if(nextState._media !== this.state._media){
-        return true;
-      }
-      return false;
+    componentWillUpdate(nextProps, nextState) {
+      return (nextState._media !== this.state._media);
     }
 
     render() {

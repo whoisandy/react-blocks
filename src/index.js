@@ -1,5 +1,3 @@
-'use strict';
-
 import Block from './block';
 import Decorate from './decorate';
 
