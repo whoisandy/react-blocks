@@ -166,14 +166,11 @@ Attribute   |  Result
 `absolute`  |  Assigns `position: absolute` and sets `top:0;right:0;bottom:0;left:0`. *Note:* When using `absolute` attribute, there must be a container having `position: relative` layout.
 
 
-## Developers
-
-Clone the repository, install the dependencies & type `npm start` to start a local development server. Open `http://localhost:8080` to get started.
-
-The repository comes with a set of tests, which serve also as examples. To run the tests, type `npm test` once you install the dependencies. All tests are written using mocha & chai.
+## Issues
+Feel free to contribute. Submit a Pull Request or open an issue for further discussion.
 
 ## License
-MIT &copy; 2015 [whoisandie][whoisandie]
+MIT &copy; [whoisandie][whoisandie]
 
 [polymer]: https://www.polymer-project.org/0.5/docs/polymer/layout-attrs.html
 [layoutjs]: https://github.com/basarat/layoutjs
