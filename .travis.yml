@@ -5,7 +5,16 @@ cache:
 notifications:
   email: false
 node_js:
-  - iojs
+  - "4.1"
+  - "4.0"
+  - "0.12"
+  - "0.11"
+  - "0.10"
+
+env:
+  global:
+    - NODE_ENV=test
+
 before_install:
   - npm i -g npm@^2.0.0
 script:
