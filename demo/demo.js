@@ -1,8 +1,7 @@
-import './github.less';
+// import './github.less';
 import './demo.less';
 
 import React from 'react';
-import Highlight from 'react-highlight';
 import Block from 'react-blocks';
 
 class AppHeader extends React.Component {
@@ -18,12 +17,6 @@ class AppHeader extends React.Component {
 			small: {
 				fontSize: 20,
 				fontWeight: 200,
-				md: {
-					fontSize: 28
-				},
-				lg: {
-					fontSize: 28
-				}
 			}
 		};
 
@@ -69,29 +62,6 @@ class AppFooter extends React.Component {
 }
 
 class AppLayoutHorizontal extends React.Component {
-	code(type) {
-		let result;
-		switch(type) {
-			case 'reverse':
-				result = {
-					__html: `<Block className="demo" layout horizontal>\n  <Block>Alpha</Block>\n  <Block>Beta</Block>\n  <Block>Gamma</Block>\n  <Block>Delta</Block>\n</Block>`
-				};
-				break;
-			case 'wrap':
-				result = {
-					__html: `<Block className="demo" layout style={styles.wrap}>\n  <Block flex>Alpha</Block>\n  <Block flex>Beta</Block>\n  <Block flex>Gamma</Block>\n  <Block flex>Delta</Block>\n</Block>`
-				};
-				break;
-			default:
-				result = {
-					__html: `<Block className="demo" layout horizontal reverse>\n  <Block>Alpha</Block>\n  <Block>Beta</Block>\n  <Block>Gamma</Block>\n  <Block>Delta</Block>\n</Block>`
-				};
-				break;
-		}
-
-		return result;
-	}
-
 	render() {
 		let styles = {
 			wrap: {
@@ -105,10 +75,6 @@ class AppLayoutHorizontal extends React.Component {
 			<div className="horizontal-and-vertical-layout">
 				<h4>Horizontal and Vertical Layout</h4>
 				<p>When a block component includes the layout attribute, it can become a flex container. You can specify horizontal or vertical to change the orientation</p>
-
-				<Highlight className="html">
-					{this.code()}
-				</Highlight>
 				<Block className="demo" layout horizontal>
 					<Block>Alpha</Block>
 					<Block>Beta</Block>
@@ -118,13 +84,7 @@ class AppLayoutHorizontal extends React.Component {
 
 
 				<p>By default, every block container has flexWrap property set to wrap.</p>
-				<Highlight className="html">
-					{this.code('wrap')}
-				</Highlight>
 				<p>Further the styles object would look as shown below.</p>
-				<Highlight className="js">
-					{`let styles = {\n  wrap: {\n    width: 200,\n    marginLeft: 'auto',\n    marginRight: 'auto'\n  }\n}`}
-				</Highlight>
 				<Block className="demo" layout style={styles.wrap}>
 					<Block flex>Alpha</Block>
 					<Block flex>Beta</Block>
@@ -132,40 +92,20 @@ class AppLayoutHorizontal extends React.Component {
 					<Block flex>Delta</Block>
 				</Block>
 
-				<Highlight className="html">
-					{this.code('reverse')}
-				</Highlight>
+
+				<p>Layout direction can be mirrored with the reverse attribute.</p>
 				<Block className="demo" layout horizontal reverse>
 					<Block>Alpha</Block>
 					<Block>Beta</Block>
 					<Block>Gamma</Block>
 					<Block>Delta</Block>
 				</Block>
-				<p>Layout direction can be mirrored with the reverse attribute.</p>
 			</div>
 		);
 	}
 }
 
 class AppLayoutFlexible extends React.Component {
-	code(type) {
-		let result;
-		switch(type) {
-			case 'horizontal':
-				result = {
-					__html: `<Block className="demo" layout horizontal>\n  <Block>Alpha</Block>\n  <Block flex>Beta</Block>\n  <Block>Gamma</Block>\n</Block>`
-				};
-				break;
-			case 'vertical':
-				result = {
-					__html: `<Block className="demo" layout vertical>\n  <Block>Alpha</Block>\n  <Block flex>Beta</Block>\n  <Block>Gamma</Block>\n</Block>`
-				};
-				break;
-		}
-
-		return result;
-	}
-
 	render() {
 		let styles = {
 			vertical: {
@@ -176,10 +116,6 @@ class AppLayoutFlexible extends React.Component {
 			<div className="flexible-children">
 				<h4>Flexible children</h4>
 				<p>Children of an element using the layout styles can use flex style to control their own sizing. For example.</p>
-
-				<Highlight className="html">
-					{this.code('horizontal')}
-				</Highlight>
 				<Block className="demo" layout horizontal>
 					<Block>Alpha</Block>
 					<Block flex>Beta</Block>
@@ -188,10 +124,6 @@ class AppLayoutFlexible extends React.Component {
 
 				<p>The same is true for children of vertical elements.</p>
 				<p><b>Note: </b>For vertical layouts, the container needs to have a height for the children to flex correctly.</p>
-
-				<Highlight className="html">
-					{this.code('vertical')}
-				</Highlight>
 				<Block className="demo" layout vertical style={styles.vertical}>
 					<Block>Alpha</Block>
 					<Block flex>Beta</Block>
@@ -203,29 +135,6 @@ class AppLayoutFlexible extends React.Component {
 }
 
 class AppAligned extends React.Component {
-	code(type) {
-		let result;
-		switch(type) {
-			case 'start':
-				result = {
-					__html: `<Block className="demo" layout horizontal start>\n  <Block>Start</Block>\n</Block>`
-				};
-				break;
-			case 'center':
-				result = {
-					__html: `<Block className="demo" layout horizontal center>\n  <Block>Start</Block>\n</Block>`
-				};
-				break;
-			case 'end':
-				result = {
-					__html: `<Block className="demo" layout horizontal end>\n  <Block>Start</Block>\n</Block>`
-				};
-				break;
-		}
-
-		return result;
-	}
-
 	render() {
 		let styles = {
 			vertical: {
@@ -237,25 +146,14 @@ class AppAligned extends React.Component {
 				<h4>Alignment: Cross-axis</h4>
 				<p>By default, children stretch to fit the cross-axis (e.g. vertical stretching in a horizontal layout).</p>
 				<p>Children can be aligned across the cross-axis by adding align attribute and setting it to start, center or end.</p>
-
-				<Highlight className="html">
-					{this.code('start')}
-				</Highlight>
 				<Block className="demo" layout horizontal start style={styles.vertical}>
 					<Block>Start</Block>
 				</Block>
 
-
-				<Highlight className="html">
-					{this.code('center')}
-				</Highlight>
 				<Block className="demo" layout horizontal center style={styles.vertical}>
 					<Block>Centered</Block>
 				</Block>
 
-				<Highlight className="html">
-					{this.code('end')}
-				</Highlight>
 				<Block className="demo" layout horizontal end style={styles.vertical}>
 					<Block>End</Block>
 				</Block>
@@ -265,84 +163,35 @@ class AppAligned extends React.Component {
 }
 
 class AppJustified extends React.Component {
-	code(type) {
-		let result
-		switch(type) {
-			case 'start':
-				result = {
-					__html: `<Block className="demo" layout horizontal justifyStart>\n  <Block>Alpha</Block>\n  <Block>Beta</Block>\n  <Block>Gamma</Block>\n</Block>`
-				};
-				break;
-			case 'center':
-				result = {
-					__html: `<Block className="demo" layout horizontal justifyCenter>\n  <Block>Alpha</Block>\n  <Block>Beta</Block>\n  <Block>Gamma</Block>\n</Block>`
-				};
-				break;
-			case 'end':
-				result = {
-					__html: `<Block className="demo" layout horizontal justifyEnd>\n  <Block>Alpha</Block>\n  <Block>Beta</Block>\n  <Block>Gamma</Block>\n</Block>`
-				};
-				break;
-			case 'around':
-				result = {
-					__html: `<Block className="demo" layout horizontal justifyAround>\n  <Block>Alpha</Block>\n  <Block>Beta</Block>\n  <Block>Gamma</Block>\n</Block>`
-				};
-				break;
-			case 'between':
-				result = {
-					__html: `<Block className="demo" layout horizontal justifyBetween>\n  <Block>Alpha</Block>\n  <Block>Beta</Block>\n  <Block>Gamma</Block>\n</Block>`
-				};
-				break;
-		}
-
-		return result;
-	}
-
 	render() {
 		return (
 			<div className="justification">
 				<h4>Justification: Main-axis</h4>
 				<p>Justification controls the content position in the main axis. Use the justify attribute and set it to start, center, end, between or around. By default justify is set to start.</p>
-
-				<Highlight className="html">
-					{this.code('start')}
-				</Highlight>
 				<Block className="demo" layout horizontal justifyStart>
 					<Block>Alpha</Block>
 					<Block>Beta</Block>
 					<Block>Gamma</Block>
 				</Block>
 
-				<Highlight className="html">
-					{this.code('center')}
-				</Highlight>
 				<Block className="demo" layout horizontal justifyCenter>
 					<Block>Alpha</Block>
 					<Block>Beta</Block>
 					<Block>Gamma</Block>
 				</Block>
 
-				<Highlight className="html">
-					{this.code('end')}
-				</Highlight>
 				<Block className="demo" layout horizontal justifyEnd>
 					<Block>Alpha</Block>
 					<Block>Beta</Block>
 					<Block>Gamma</Block>
 				</Block>
 
-				<Highlight className="html">
-					{this.code('around')}
-				</Highlight>
 				<Block className="demo" layout horizontal justifyAround>
 					<Block>Alpha</Block>
 					<Block>Beta</Block>
 					<Block>Gamma</Block>
 				</Block>
 
-				<Highlight className="html">
-					{this.code('between')}
-				</Highlight>
 				<Block className="demo" layout horizontal justifyBetween>
 					<Block>Alpha</Block>
 					<Block>Beta</Block>
@@ -354,12 +203,6 @@ class AppJustified extends React.Component {
 }
 
 class AppCentered extends React.Component {
-	code() {
-		return {
-			__html: `<Block className="demo" layout horizontal centered>\n  <Block>Centered</Block>\n</Block>`
-		}
-	}
-
   render() {
 		let styles = {
 			vertical: {
@@ -371,9 +214,6 @@ class AppCentered extends React.Component {
 				<h4>Centered (Cross-axis & Main-axis)</h4>
 				<p>Further more, an item in a flex-container can be aligned and justified using the centered attribute.</p>
 
-				<Highlight className="html">
-					{this.code()}
-				</Highlight>
 				<Block className="demo" layout horizontal centered style={styles.vertical}>
 					<Block>Centered</Block>
 				</Block>
@@ -383,12 +223,6 @@ class AppCentered extends React.Component {
 }
 
 class AppSelfAligned extends React.Component {
-	code() {
-		return {
-			__html: `<Block className="demo" layout horizontal>\n  <Block flex selfStart>Alpha</Block>\n  <Block flex selfCenter>Beta</Block>\n  <Block flex selfEnd>Gamma</Block>\n  <Block flex>Delta</Block>\n</Block>`
-		}
-	}
-
   render() {
 		let styles = {
 			vertical: {
@@ -400,9 +234,6 @@ class AppSelfAligned extends React.Component {
 				<h4>Self Alignment</h4>
 				<p>Alignment can also be set per-child (instead of using the layout containers rules). By default, self alignment is set to stretch.</p>
 
-				<Highlight className="html">
-					{this.code()}
-				</Highlight>
 				<Block className="demo" layout horizontal style={styles.vertical}>
 					<Block flex selfStart>Alpha</Block>
 					<Block flex selfCenter>Beta</Block>
@@ -415,12 +246,6 @@ class AppSelfAligned extends React.Component {
 }
 
 class AppNested extends React.Component {
-	code() {
-		return {
-			__html: ``
-		}
-	}
-
   render() {
 		let styles = {
 			transparent: {
@@ -432,53 +257,16 @@ class AppNested extends React.Component {
 			common: {
 				margin: 4,
 				padding: 12,
-				background: 'firebrick',
-				color: 'white',
-
-				md: {
-					background: 'tomato',
-					color: 'white'
-				},
-
-				lg: {
-					background: 'white',
-					color: 'black'
-				}
+				background: 'white'
 			},
 
 			search: {
 				width: 200,
-				display: 'none',
-				md: {
-					display: 'block'
-				},
-				lg: {
-					display: 'block'
-				}
-			},
-
-			sidebar: {
-				md: {
-					maxWidth: '50%',
-					flexBasis: '50%'
-				},
-				lg: {
-					maxWidth: 200,
-					flexBasis: 200
-				}
+				display: 'none'
 			},
 
 			widget: {
-				height: 100,
-				md: {
-					height: 'auto'
-				}
-			},
-
-			footer: {
-				md: {
-					display: 'none'
-				}
+				height: 100
 			}
 		};
 
@@ -524,14 +312,9 @@ class App extends React.Component {
   render() {
     let styles = {
       app: {
+				width: 800,
         margin: '0 auto',
-				padding: 20,
-				md: {
-					width: 600
-				},
-				lg: {
-					width: 800
-				}
+				padding: 20
       }
     };
 
