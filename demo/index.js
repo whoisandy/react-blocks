@@ -1,4 +1,5 @@
 import React from 'react';
+import { render } from 'react-dom';
 import Demo from './demo';
 
 main()
@@ -9,5 +10,5 @@ function main() {
   container.setAttribute('id', 'container');
   document.body.appendChild(container);
 
-  React.render(<Demo />, container);
+  render(<Demo />, container);
 }
