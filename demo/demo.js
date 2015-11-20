@@ -260,6 +260,11 @@ class AppNested extends React.Component {
 				background: 'white'
 			},
 
+			sidebar: {
+				maxWidth: 200,
+				flexBasis: 200
+			},
+
 			search: {
 				width: 200,
 				display: 'none'
@@ -298,10 +303,10 @@ class AppNested extends React.Component {
 								<Block flex style={styles.common}>Widget</Block>
 								<Block flex style={styles.common}>Widget</Block>
 							</Block>
-							<Block flex style={[styles.common, styles.content]}>Dashboard Content</Block>
+							<Block flex style={styles.common}>Dashboard Content</Block>
 						</Block>
 					</Block>
-					<Block style={[styles.common, styles.footer]}>Footer</Block>
+					<Block style={styles.common}>Footer</Block>
 				</Block>
 			</div>
 		);

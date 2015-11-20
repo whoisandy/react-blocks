@@ -7,8 +7,8 @@ export default (Component) => {
       _media: {}
     };
 
-    constructor(props) {
-      super(props);
+    constructor(props, context) {
+      super(props, context);
       this.state = this.state || {};
     }
 
@@ -16,6 +16,10 @@ export default (Component) => {
       if(super.componentDidMount) {
         super.componentDidMount();
       }
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+      return (nextState._media !== this.state._media);
     }
 
     componentWillUnmount() {
@@ -30,15 +34,10 @@ export default (Component) => {
       }
     }
 
-    componentWillUpdate(nextProps, nextState) {
-      return (nextState._media !== this.state._media);
-    }
-
     render() {
       return Compose(this, super.render());
     }
   }
   ComposedComponent.displayName = 'Block';
-
   return ComposedComponent;
 }

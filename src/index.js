@@ -1,2 +1,4 @@
 import Block from './block';
-export default Block;
+import Decorate from './decorate';
+
+export default Decorate(Block);

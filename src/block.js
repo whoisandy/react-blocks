@@ -8,8 +8,7 @@ class Block extends React.Component {
   render() {
     let props = this.props;
     let node = props.el || 'div';
-    let children = props.children;
-    return React.createElement(node, props, children);
+    return React.createElement(node, props);
   }
 };
 

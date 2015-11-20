@@ -1,205 +1,219 @@
-'use strict';
-
 import React from 'react';
+import assign from 'object-assign';
 import Layout from './layout';
-import Utils from './utils';
 
-const _mediaQueryListByQueryString = {};
-const _predefinedMediaQueryString = {
-  xs: 'screen and (min-width: 375px)',
-  md: 'screen and (min-width: 768px)',
-  lg: 'screen and (min-width: 1024px)'
-};
+// const _mediaQueryListByQueryString = {};
+// const _predefinedMediaQueryString = {
+//   xs: 'screen and (min-width: 375px)',
+//   md: 'screen and (min-width: 768px)',
+//   lg: 'screen and (min-width: 1024px)'
+// };
+//
+// function _query(key) {
+//   return key[0] === '@' || key === 'xs' || key === 'md' || key === 'lg';
+// };
+//
+// function _onMediaQueryChange(component, query, mediaQueryList) {
+//   let media = {};
+//   media[query] = mediaQueryList.matches;
+//   _setStyleState(component, query, media);
+// }
+//
+// function _setStyleState(component, key, newState) {
+//   let existing = component.state && component.state._media || {};
+//   let state = { _media: assign({}, existing) };
+//   state._media[key] = state._media[key] || {};
+//   assign(state._media[key], newState);
+//   component.setState({
+//     _media: state._media
+//   });
+// }
 
-function _onMediaQueryChange(component, query, mediaQueryList) {
-  let media = {};
-  media[query] = mediaQueryList.matches;
-  _setStyleState(component, query, media);
-}
-
-function _setStyleState(component, key, newState) {
-  let existing = component.state && component.state._media || {};
-  let state = { _media: Utils.fillin({}, existing) };
-  state._media[key] = state._media[key] || {};
-  Utils.fillin(state._media[key], newState);
-  component.setState({
-    _media: state._media
-  });
-}
-
-const _resolveLayoutGeneral = (props, style) => {
+function _resolveLayoutGeneral(props, style) {
+  let newStyle = {};
   if(props.block){
-    style = Utils.fillin(style, Layout.block);
+    newStyle = assign(newStyle, style, Layout.block);
   }
   if(props.hidden){
-    style = Utils.fillin(style, Layout.hidden);
+    newStyle = assign(newStyle, style, Layout.hidden);
   }
   if(props.invisible){
-    style = Utils.fillin(style, Layout.invisible);
+    newStyle = assign(newStyle, style, Layout.invisible);
   }
 
-  return style;
+  return newStyle;
 }
 
-const _resolveLayoutPosition = (props, style) => {
+function _resolveLayoutPosition(props, style) {
+  let newStyle = {};
   if(props.relative){
-    style = Utils.fillin(style, Layout.relative);
+    newStyle = assign(newStyle, style, Layout.relative);
   }
   if(props.absolute){
-    style = Utils.fillin(style, Layout.absolute);
+    newStyle = assign(newStyle, style, Layout.absolute);
   }
 
-  return style;
+  return newStyle;
 };
 
-const _resolveLayoutFlex = (props, style) => {
+function _resolveLayoutFlex(props, style) {
+  let newStyle = {};
   if(props.layout){
-    style = Utils.fillin(style, Layout.layout, Layout.vertical);
+    newStyle = assign(newStyle, style, Layout.layout, Layout.vertical);
     if(props.vertical){
       props.reverse ?
-      style = Utils.fillin(style, Layout.verticalReverse) :
-      style = Utils.fillin(style, Layout.vertical);
+      newStyle = assign(newStyle, style, Layout.verticalReverse) :
+      newStyle = assign(newStyle, style, Layout.vertical);
     } else {
       props.reverse ?
-      style = Utils.fillin(style, Layout.horizontalReverse) :
-      style = Utils.fillin(style, Layout.horizontal);
+      newStyle = assign(newStyle, style, Layout.horizontalReverse) :
+      newStyle = assign(newStyle, style, Layout.horizontal);
     }
   }
   if(props.inline){
-    style = Utils.fillin(style, Layout.inline, Layout.horizontal);
+    newStyle = assign(newStyle, style, Layout.inline, Layout.horizontal);
   }
 
   props.flex ?
-  style = Utils.fillin({}, Layout.flexAuto, style) :
-  style = Utils.fillin({}, Layout.flexNone, style);
+  newStyle = assign(newStyle, Layout.flexAuto, style) :
+  newStyle = assign(newStyle, Layout.flexNone, style);
 
-  return style;
+  return newStyle;
 };
 
-const _resolveLayoutAlign = (props, style) => {
-  style = Utils.fillin(style, Layout.alignStretch);
+function _resolveLayoutAlign(props, style) {
+  let newStyle = {};
+  newStyle = assign(newStyle, style, Layout.alignStretch);
   if(props.start) {
-    style = Utils.fillin(style, Layout.alignStart);
+    newStyle = assign(newStyle, style, Layout.alignStart);
   }
   if(props.center) {
-    style = Utils.fillin(style, Layout.alignCenter);
+    newStyle = assign(newStyle, style, Layout.alignCenter);
   }
   if(props.end) {
-    style = Utils.fillin(style, Layout.alignEnd);
+    newStyle = assign(newStyle, style, Layout.alignEnd);
   }
   if(props.centered){
-    style = Utils.fillin(style, Layout.centered);
+    newStyle = assign(newStyle, style, Layout.centered);
   }
 
-  return style;
+  return newStyle;
 };
 
-const _resolveLayoutSelf = (props, style) => {
+function _resolveLayoutSelf(props, style) {
+  let newStyle = {};
   if(props.selfStart) {
-    style = Utils.fillin(style, Layout.selfAlignStart);
+    newStyle = assign(newStyle, style, Layout.selfAlignStart);
   }
   if(props.selfCenter) {
-    style = Utils.fillin(style, Layout.selfAlignCenter);
+    newStyle = assign(newStyle, style, Layout.selfAlignCenter);
   }
   if(props.selfEnd) {
-    style = Utils.fillin(style, Layout.selfAlignEnd);
+    newStyle = assign(newStyle, style, Layout.selfAlignEnd);
   }
   if(props.selfStretch){
-    style = Utils.fillin(style, Layout.selfAlignStretch);
+    newStyle = assign(newStyle, style, Layout.selfAlignStretch);
   }
 
-  return style;
+  return newStyle;
 };
 
-const _resolveLayoutJustify = (props, style) => {
+function _resolveLayoutJustify(props, style) {
+  let newStyle = {};
   if(props.justifyStart) {
-    style = Utils.fillin(style, Layout.justifyStart);
+    newStyle = assign(newStyle, style, Layout.justifyStart);
   }
   if(props.justifyCenter) {
-    style = Utils.fillin(style, Layout.justifyCenter);
+    newStyle = assign(newStyle, style, Layout.justifyCenter);
   }
   if(props.justifyEnd) {
-    style = Utils.fillin(style, Layout.justifyEnd);
+    newStyle = assign(newStyle, style, Layout.justifyEnd);
   }
   if(props.justifyStretch) {
-    style = Utils.fillin(style, Layout.justifyStretch);
+    newStyle = assign(newStyle, style, Layout.justifyStretch);
   }
   if(props.justifyBetween) {
-    style = Utils.fillin(style, Layout.justifyBetween);
+    newStyle = assign(newStyle, style, Layout.justifyBetween);
   }
   if(props.justifyAround) {
-    style = Utils.fillin(style, Layout.justifyAround);
+    newStyle = assign(newStyle, style, Layout.justifyAround);
   }
 
-  return style;
+  return newStyle;
 };
 
-const _resolveLayoutStyles = (props, style) => {
-  style = _resolveLayoutGeneral(props, style);
-  style = _resolveLayoutPosition(props, style);
-  style = _resolveLayoutFlex(props, style);
-  style = _resolveLayoutAlign(props, style);
-  style = _resolveLayoutSelf(props, style);
-  style = _resolveLayoutJustify(props, style);
-
-  return style;
+function _resolveLayoutStyles(props, style) {
+  return assign(
+    {},
+    _resolveLayoutGeneral(props, style),
+    _resolveLayoutPosition(props, style),
+    _resolveLayoutFlex(props, style),
+    _resolveLayoutAlign(props, style),
+    _resolveLayoutSelf(props, style),
+    _resolveLayoutJustify(props, style)
+  );
 };
 
-const _resolveMediaQueries = (component, style) => {
-  let styles = style;
-  Object.keys(styles)
-  .filter(name => {
-    return Utils.query(name);
-  })
-  .map(query => {
-    let mediaQueryStyles = styles[query];
-    query = query[0] === '@' ? query.replace('@media ', '') : _predefinedMediaQueryString[query];
-    let mql = _mediaQueryListByQueryString[query];
-    if (!mql) {
-      _mediaQueryListByQueryString[query] = mql = window.matchMedia(query);
-    }
-
-    if (!component._mediaQueryListenersByQuery) {
-      component._mediaQueryListenersByQuery = {};
-    }
-
-    if (!component._mediaQueryListenersByQuery[query]) {
-      let listener = _onMediaQueryChange.bind(null, component, query);
-      mql.addListener(listener);
-      component._mediaQueryListenersByQuery[query] = {
-        remove() { mql.removeListener(listener) }
-      };
-    }
-
-    if (mql.matches) {
-      styles = Utils.fillin(styles, mediaQueryStyles);
-    }
-  });
-
-  return styles;
-};
+// function _resolveMediaQueries(component, style) {
+//   let newStyle = {};
+//   Object.keys(style)
+//   .filter(name => {
+//     return _query(name);
+//   })
+//   .map(query => {
+//     debugger;
+//     let mediaQueryStyles = style[query];
+//     query = query[0] === '@' ? query.replace('@media ', '') : _predefinedMediaQueryString[query];
+//     let mql = _mediaQueryListByQueryString[query];
+//     if (!mql) {
+//       _mediaQueryListByQueryString[query] = mql = window.matchMedia(query);
+//     }
+//
+//     if (!component._mediaQueryListenersByQuery) {
+//       component._mediaQueryListenersByQuery = {};
+//     }
+//
+//     if (!component._mediaQueryListenersByQuery[query]) {
+//       let listener = _onMediaQueryChange.bind(null, component, query);
+//       mql.addListener(listener);
+//       component._mediaQueryListenersByQuery[query] = {
+//         remove() { mql.removeListener(listener) }
+//       };
+//     }
+//
+//     if (mql.matches) {
+//       newStyle = assign({}, style, mediaQueryStyles);
+//     }
+//   });
+//
+//   return newStyle;
+// };
 
 export default function Compose(component, rendered){
   let props = rendered.props;
   let style = props.style;
-  let children = props.children;
 
-  let newStyle = {}, newProps = {};
+  let newProps = {};
+  let newStyle = {};
 
   if(Array.isArray(style)) {
-    style = Utils.mixin(style);
+    style.forEach(s => {
+      if (!s || typeof(s) !== 'object' || Array.isArray(s)){
+        console.warn('styles object should be an object');
+      }
+      assign(newStyle, style);
+    });
   }
 
-  style = _resolveLayoutStyles(props, style);
-  style = _resolveMediaQueries(component, style);
+  newStyle = assign(newStyle, _resolveLayoutStyles(props, style));
+  // newStyle = assign(newStyle, _resolveMediaQueries(component, style));
+  //
+  // Object.keys(style).forEach(key => {
+  //   if (!_query(key)) {
+  //     newStyle[key] = style[key];
+  //   }
+  // });
 
-  Object.keys(style).forEach(key => {
-    if (!Utils.query(key)) {
-      newStyle[key] = style[key];
-    }
-  });
-
-  // Prefix vendors here
-  newProps = Utils.fillin(newProps, {style: newStyle});
-  return React.cloneElement(rendered, newProps, children);
+  newProps = assign(newProps, props, {style: newStyle});
+  return React.cloneElement(rendered, newProps);
 }
