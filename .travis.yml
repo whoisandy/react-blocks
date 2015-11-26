@@ -5,6 +5,7 @@ cache:
 notifications:
   email: false
 node_js:
+  - "iojs"
   - "4.1"
   - "4.0"
   - "0.12"

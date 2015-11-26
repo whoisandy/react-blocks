@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class Block extends React.Component {
-  constructor(props) {
-    super(props);
+class Block extends Component {
+  constructor(props, context) {
+    super(props, context);
   }
 
   render() {

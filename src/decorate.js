@@ -1,14 +1,14 @@
 import Compose from './compose';
 
 export default (Component) => {
-  class ComposedComponent extends Component {
+  class ComposedBlock extends Component {
     _mediaQueryListenersByQuery: {};
     state = {
       _media: {}
     };
 
-    constructor(props, context) {
-      super(props, context);
+    constructor() {
+      super();
       this.state = this.state || {};
     }
 
@@ -34,10 +34,10 @@ export default (Component) => {
       }
     }
 
+    // TODO: Think about composing this way.
     render() {
       return Compose(this, super.render());
     }
   }
-  ComposedComponent.displayName = 'Block';
-  return ComposedComponent;
+  return ComposedBlock;
 }
