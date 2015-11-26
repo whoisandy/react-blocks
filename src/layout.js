@@ -1,4 +1,4 @@
-import {fillin} from './utils';
+import assign from 'object-assign';
 
 let common, layout, inline, flex, flexAuto, flexNone;
 let horizontal, horizontalReverse, vertical, verticalReverse;
@@ -15,11 +15,11 @@ common = {
   flexWrap: 'wrap'
 };
 
-layout = fillin(common, {
+layout = assign({}, common, {
   display: 'flex'
 });
 
-inline = fillin(common, {
+inline = assign({}, common, {
   display: 'inline-flex'
 });
 
@@ -29,7 +29,7 @@ flex = {
   flexBasis: '0%'
 };
 
-flexAuto = fillin(flex, {
+flexAuto = assign({}, flex, {
   flexGrow: 1,
   flexShrink: 1,
   flexBasis: 'auto'
@@ -65,19 +65,19 @@ absolute = {
   left: 0
 };
 
-horizontal = fillin(layout, {
+horizontal = assign({}, layout, {
   flexDirection: 'row'
 });
 
-horizontalReverse = fillin(layout, {
+horizontalReverse = assign({}, layout, {
   flexDirection: 'row-reverse'
 });
 
-vertical = fillin(layout, {
+vertical = assign({}, layout, {
   flexDirection: 'column'
 });
 
-verticalReverse = fillin(layout, {
+verticalReverse = assign({}, layout, {
   flexDirection: 'column-reverse'
 });
 
@@ -133,7 +133,7 @@ justifyAround = {
   justifyContent: 'space-around'
 };
 
-centered = fillin(layout, alignCenter, justifyCenter);
+centered = assign({}, layout, alignCenter, justifyCenter);
 
 export default {
   block: block,
