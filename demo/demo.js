@@ -18,6 +18,7 @@ const AppHeader = () => {
 			<section>
 				<p>React blocks uses a <i>declarative approach</i> to build complex layouts on top of CSS Flexbox. Flexbox properties are exposed as attributes on a higher-level react component. Supports media-queries via predefined <i>mobile-first</i> queries. Further custom media queries can be specified in a styles object. </p>
 				<p>Please note, it does <b>NOT</b> handle mising browser features. Please use <a href="http://modernizr.com/">Modernizr</a> with Polyfills to achieve that.</p>
+				<p>Test code</p>
 			</section>
 			<p><a href="https://github.com/whoisandie/react-blocks">View on Github</a></p>
 		</Block>
